@@ -1,0 +1,12 @@
+{
+ "_not": "Eniştenin gerçek ürün bilgileri buraya yazılacak. Boş alanlar listelemede {{FACT_NEEDED}} olarak kalır, uydurulmaz. uretim_ortagi: baskıyı bir servis yapıyorsa adı (ör. Printify); kendisi basıyorsa boş.",
+ "tisort_modeli": "",
+ "kumas": "",
+ "kesim": "",
+ "baski_yontemi": "",
+ "bedenler": "",
+ "bakim": "",
+ "uretim_suresi": "",
+ "gonderim": "",
+ "uretim_ortagi": ""
+}

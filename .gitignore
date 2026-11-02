@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+kayitlar/
+veri/
+deneme/
+cikti/*/*.png
+cikti/*/*.orijinal.webp

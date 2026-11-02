@@ -1,0 +1,493 @@
+{
+ "tarih": "2026-11-02",
+ "takvim": [
+  {
+   "tarih": "2026-11-26",
+   "ad": "Thanksgiving",
+   "ipucu": "aile yemeği esprileri, hindi",
+   "ideal_liste": "2026-10-12",
+   "en_gec_liste": "2026-11-05",
+   "durum": "acele",
+   "gun_kaldi": 24
+  },
+  {
+   "tarih": "2026-11-27",
+   "ad": "Black Friday / Cyber Monday",
+   "ipucu": "indirim dönemi; trafik zirvede",
+   "ideal_liste": "2026-10-13",
+   "en_gec_liste": "2026-11-06",
+   "durum": "acele",
+   "gun_kaldi": 25
+  },
+  {
+   "tarih": "2026-12-25",
+   "ad": "Christmas",
+   "ipucu": "en büyük satış dönemi; 'ugly sweater' tarzı, aile pijama tişörtleri",
+   "ideal_liste": "2026-11-10",
+   "en_gec_liste": "2026-12-04",
+   "durum": "zamanında",
+   "gun_kaldi": 53
+  },
+  {
+   "tarih": "2027-01-01",
+   "ad": "New Year",
+   "ipucu": "yılbaşı sonrası satış düşük; 'new year new me' esprileri",
+   "ideal_liste": "2026-11-17",
+   "en_gec_liste": "2026-12-11",
+   "durum": "zamanında",
+   "gun_kaldi": 60
+  },
+  {
+   "tarih": "2027-02-14",
+   "ad": "Valentine's Day",
+   "ipucu": "çift tişörtleri, 'anti-valentine' esprileri",
+   "ideal_liste": "2026-12-31",
+   "en_gec_liste": "2027-01-24",
+   "durum": "zamanında",
+   "gun_kaldi": 104
+  }
+ ],
+ "temalar": [
+  {
+   "tema": "christmas tree",
+   "makale": "Christmas_tree",
+   "aylik_ort": 23866,
+   "yukselis": 3.81,
+   "ivme": 0.79,
+   "ivme_goreli": 0.93
+  },
+  {
+   "tema": "gingerbread",
+   "makale": "Gingerbread",
+   "aylik_ort": 9261,
+   "yukselis": 3.0,
+   "ivme": 0.77,
+   "ivme_goreli": 0.91
+  },
+  {
+   "tema": "snowman",
+   "makale": "Snowman",
+   "aylik_ort": 5361,
+   "yukselis": 2.27,
+   "ivme": 0.87,
+   "ivme_goreli": 1.03
+  },
+  {
+   "tema": "reindeer",
+   "makale": "Reindeer",
+   "aylik_ort": 42655,
+   "yukselis": 2.07,
+   "ivme": 0.88,
+   "ivme_goreli": 1.04
+  },
+  {
+   "tema": "hot cocoa",
+   "makale": "Hot_chocolate",
+   "aylik_ort": 9100,
+   "yukselis": 1.94,
+   "ivme": 0.75,
+   "ivme_goreli": 0.89
+  },
+  {
+   "tema": "turkey (bird)",
+   "makale": "Wild_turkey",
+   "aylik_ort": 20034,
+   "yukselis": 1.86,
+   "ivme": 0.81,
+   "ivme_goreli": 0.96
+  },
+  {
+   "tema": "camper van",
+   "makale": "Campervan",
+   "aylik_ort": 5833,
+   "yukselis": 1.64,
+   "ivme": 0.42,
+   "ivme_goreli": 0.5
+  },
+  {
+   "tema": "teacher",
+   "makale": "Teacher",
+   "aylik_ort": 12956,
+   "yukselis": 1.62,
+   "ivme": 0.54,
+   "ivme_goreli": 0.64
+  },
+  {
+   "tema": "weightlifting",
+   "makale": "Weightlifting",
+   "aylik_ort": 3700,
+   "yukselis": 1.31,
+   "ivme": 0.63,
+   "ivme_goreli": 0.75
+  },
+  {
+   "tema": "pumpkin",
+   "makale": "Pumpkin",
+   "aylik_ort": 24173,
+   "yukselis": 1.26,
+   "ivme": 0.84,
+   "ivme_goreli": 0.99
+  },
+  {
+   "tema": "nurse",
+   "makale": "Nursing",
+   "aylik_ort": 8718,
+   "yukselis": 1.23,
+   "ivme": 0.78,
+   "ivme_goreli": 0.92
+  },
+  {
+   "tema": "reading books",
+   "makale": "Reading",
+   "aylik_ort": 20366,
+   "yukselis": 1.19,
+   "ivme": 0.73,
+   "ivme_goreli": 0.86
+  },
+  {
+   "tema": "guitar",
+   "makale": "Guitar",
+   "aylik_ort": 29528,
+   "yukselis": 1.19,
+   "ivme": 0.85,
+   "ivme_goreli": 1.01
+  },
+  {
+   "tema": "knitting",
+   "makale": "Knitting",
+   "aylik_ort": 7892,
+   "yukselis": 1.19,
+   "ivme": 0.9,
+   "ivme_goreli": 1.07
+  },
+  {
+   "tema": "american football",
+   "makale": "American_football",
+   "aylik_ort": 90341,
+   "yukselis": 1.19,
+   "ivme": 0.8,
+   "ivme_goreli": 0.95
+  }
+ ],
+ "gundem": [
+  {
+   "baslik": "susan st james",
+   "karar": "kacin",
+   "neden": "kişi adı ve ölüm haberi, trajedi",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "susan saint james cause of death",
+   "karar": "kacin",
+   "neden": "kişi adı ve ölüm/trajedi",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "lionel messi",
+   "karar": "kacin",
+   "neden": "kişi adı",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "adam hamilton",
+   "karar": "kacin",
+   "neden": "kişi adı",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "dave bautista kratos casting update",
+   "karar": "kacin",
+   "neden": "kişi adı ve oyun/dizi markası",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "diggs",
+   "karar": "kacin",
+   "neden": "kişi adı",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "makai lemon",
+   "karar": "kacin",
+   "neden": "kişi adı",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "bears injury report",
+   "karar": "kacin",
+   "neden": "takım/lig",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "houston dynamo vs portland",
+   "karar": "kacin",
+   "neden": "takım/lig",
+   "genel_tema": ""
+  },
+  {
+   "baslik": "odell beckham jr",
+   "karar": "kacin",
+   "neden": "kişi adı",
+   "genel_tema": ""
+  }
+ ],
+ "fikirler": [
+  {
+   "baslik": "Futbolcu Hindi Hüneri",
+   "kaynak": "takvim",
+   "neden_simdi": "Thanksgiving acele dönemde son liste tarihi 2026-11-05 yaklaşırken hindi teması yıllık ortalamanın 1,86 katı ilgiyle yükseliyor ve Amerikan futbolu ile birleşince tek günlük espriden öteye geçiyor.",
+   "hedef_alici": "Şükran Günü ve futbol seven genç erkekler ve komik aile yemeği tişörtü arayanlar",
+   "slogan": "Turkey Takes The Snap",
+   "prompt": "bold retro illustration of a cheerful cartoon turkey wearing a vintage American football helmet and holding a football under wing, running pose, limited 4-color palette of burnt orange, brown, cream and dark green, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Turkey Takes The Snap' in bold retro block letters above, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-11-05",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_01.png",
+    "onizleme": "tasarim_01.onizleme.webp",
+    "boyut": "3694x2504",
+    "seffaf_oran": 0.64,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Thanksgiving Turkey Football Shirt Turkey Takes The Snap Funny Retro Fall Tee Gift for Him",
+    "etiketler": [
+     "thanksgiving shirt",
+     "turkey football tee",
+     "funny turkey shirt",
+     "fall football gift",
+     "thanksgiving funny",
+     "retro turkey tee",
+     "football fan gift",
+     "game day turkey",
+     "funny fall shirt",
+     "family dinner tee",
+     "mens thanksgiving",
+     "turkey lover gift",
+     "funny gift for him"
+    ],
+    "aciklama": "Meet the MVP of Thanksgiving dinner! This bold retro illustration shows a cheerful cartoon turkey wearing a vintage American football helmet and running with a football tucked under its wing. Drawn in burnt orange, brown, cream and dark green with thick clean outlines, it features the slogan 'Turkey Takes The Snap' in bold retro block letters above.\n\nPerfect for Thanksgiving and football fans, this funny design is a great pick for young men, game day watch parties and lighthearted family dinners. It blends fall humor with football spirit for a joke that works well beyond a single day.\n\n• {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Aşçı Hindi Kitabı",
+   "kaynak": "takvim",
+   "neden_simdi": "Thanksgiving acele dönemde son liste tarihi 2026-11-05 yaklaşırken hindi ve balkabağı ilgisi yükseliyor ve okuma teması ile birleşince aşçılık mizahı yıl boyu mutfak tişörtü olarak satıyor.",
+   "hedef_alici": "Yemek yapmayı ve okumayı seven kadınlar ve Şükran Günü ev sahipleri",
+   "slogan": "Stuffed With Good Chapters",
+   "prompt": "bold retro illustration of a cute cartoon turkey wearing chef hat reading an open cookbook next to a pumpkin pie, steam swirls, limited 4-color palette of burnt orange, mustard yellow, brown and cream, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Stuffed With Good Chapters' in playful retro lettering, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-11-05",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_02.png",
+    "onizleme": "tasarim_02.onizleme.webp",
+    "boyut": "2840x2474",
+    "seffaf_oran": 0.63,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Funny Thanksgiving Turkey Shirt, Stuffed With Good Chapters Retro Chef Tee, Book Lover Cook Gift, Pumpkin Pie Hostess Shirt",
+    "etiketler": [
+     "thanksgiving shirt",
+     "turkey shirt",
+     "funny turkey tee",
+     "chef turkey shirt",
+     "book lover gift",
+     "cookbook shirt",
+     "pumpkin pie shirt",
+     "thanksgiving hostess",
+     "retro thanksgiving",
+     "funny cooking shirt",
+     "reading shirt women",
+     "fall foodie tee",
+     "cute turkey gift"
+    ],
+    "aciklama": "Meet your new favorite fall design! This bold retro illustration features a cute cartoon turkey wearing a chef hat and reading an open cookbook next to a pumpkin pie with cozy steam swirls. Printed in a limited 4-color palette of burnt orange, mustard yellow, brown and cream with clean thick outlines, the playful retro lettering says 'Stuffed With Good Chapters' for a touch of cooking humor.\n\nPerfect for women who love cooking and reading, Thanksgiving hosts, and foodie book lovers. Great to wear for hosting Thanksgiving dinner, baking, or fall gatherings, and a fun gift idea for cooks, readers, and hostesses just in time for the Thanksgiving rush. The reading-meets-cooking theme also works as a year-round kitchen tee.\n\n- {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Örgü Ören Kardan Adam",
+   "kaynak": "takvim",
+   "neden_simdi": "Christmas zamanında dönemde son liste tarihi 2026-12-04 öncesi kardan adam ilgisi yıllık ortalamanın 2,27 katına çıkarken örgü teması 1,07 göreli ivme ile en güçlü hobiyi sunuyor.",
+   "hedef_alici": "Örgü örmeyi seven kadınlar ve kış temalı cozy tişört arayanlar",
+   "slogan": "Knit Cold Keep Cozy",
+   "prompt": "bold retro illustration of a smiling snowman wearing a striped scarf knitting a tiny sweater with wooden knitting needles and yarn ball, snowflakes, limited 4-color palette of teal blue, tomato red, cream and charcoal, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Knit Cold Keep Cozy' in bold retro letters, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-12-04",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_03.png",
+    "onizleme": "tasarim_03.onizleme.webp",
+    "boyut": "2548x2514",
+    "seffaf_oran": 0.66,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Knitting Snowman Shirt Knit Cold Keep Cozy Funny Retro Winter Tee Cozy Christmas Gift for Knitter Yarn Lover",
+    "etiketler": [
+     "knitting snowman",
+     "knit shirt women",
+     "cozy winter shirt",
+     "funny snowman tee",
+     "christmas knitting",
+     "knitter gift women",
+     "retro snowman shirt",
+     "yarn lover gift",
+     "winter cozy tee",
+     "snowman knitting",
+     "knit cold cozy",
+     "cute snowman shirt",
+     "holiday knitter tee"
+    ],
+    "aciklama": "Meet your new winter favorite: a smiling snowman in a striped scarf happily knitting a tiny sweater with wooden needles and a ball of yarn. Rendered in bold retro style with clean thick outlines and a playful palette of teal blue, tomato red, cream and charcoal, with snowflakes and the bold retro slogan 'Knit Cold Keep Cozy'.\n\nMade for women who love to knit and anyone looking for a cozy, funny winter tee, this cheerful design shines throughout the Christmas season. It makes a thoughtful holiday gift for knitters, yarn lovers and cozy Christmas fans who want a cute seasonal look with humor.\n\n- {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Rockçı Ren Geyiği",
+   "kaynak": "takvim",
+   "neden_simdi": "Christmas zamanında dönemde son liste tarihi 2026-12-04 öncesi ren geyiği ilgisi yıllık ortalamanın 2,07 katına çıkarken gitar teması 1,01 göreli ivme ile müzisyenlere yıl boyu satış sağlıyor.",
+   "hedef_alici": "Gitar çalan gençler ve müzisyen eşine komik yılbaşı hediyesi arayanlar",
+   "slogan": "Reindeer Riffs Jingle Loud",
+   "prompt": "bold retro illustration of a cool cartoon reindeer with antlers decorated with string lights playing a retro electric guitar, musical notes and stars, limited 4-color palette of forest green, cherry red, mustard yellow and cream, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Reindeer Riffs Jingle Loud' in vintage rock poster lettering, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-12-04",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_04.png",
+    "onizleme": "tasarim_04.onizleme.webp",
+    "boyut": "2408x3482",
+    "seffaf_oran": 0.55,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Funny Christmas Reindeer Guitar Shirt Reindeer Riffs Jingle Loud Retro Rock Tee Gift for Guitar Player Musician Holiday Tee",
+    "etiketler": [
+     "reindeer guitar tee",
+     "funny christmas tee",
+     "christmas rock shirt",
+     "guitarist gift",
+     "guitar player gift",
+     "funny musician gift",
+     "retro christmas tee",
+     "reindeer rock tee",
+     "holiday guitar tee",
+     "rock christmas gift",
+     "cool reindeer shirt",
+     "music lover gift",
+     "christmas band tee"
+    ],
+    "aciklama": "Turn up the holiday cheer with Reindeer Riffs Jingle Loud! This bold retro illustration features a cool cartoon reindeer shredding a vintage electric guitar, antlers wrapped in festive string lights. With musical notes, stars, clean thick outlines and vintage rock poster lettering in forest green, cherry red, mustard yellow and cream, it is playful, festive and full of rockstar humor.\n\nMade for Christmas parties, holiday concerts and everyday December fun. It is a funny Christmas gift for teens who play guitar, young guitar players and bandmates, and a hilarious pick for anyone hunting for a Christmas gift for a musician husband, boyfriend or friend.\n\n- {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Kitaplı Kakaolu Noel",
+   "kaynak": "takvim",
+   "neden_simdi": "Christmas zamanında dönemde son liste tarihi 2026-12-04 öncesi yılbaşı ağacı ilgisi yıllık ortalamanın 3,81 katına çıkarken sıcak kakao ve kitap teması ile birleşince cozy kış trendini yakalıyor.",
+   "hedef_alici": "Kitap kurtları ve cozy kış estetiğini seven kadınlar",
+   "slogan": "Cozy Pages Warm Cocoa",
+   "prompt": "bold retro illustration of a cute anthropomorphic Christmas tree character sitting in an armchair reading a book and holding a steaming mug of hot cocoa with marshmallows, cozy lights, limited 4-color palette of forest green, warm red, cream and cocoa brown, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Cozy Pages Warm Cocoa' in cozy retro lettering, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-12-04",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_05.png",
+    "onizleme": "tasarim_05.onizleme.webp",
+    "boyut": "2414x2530",
+    "seffaf_oran": 0.71,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Book Lover Christmas Shirt Cozy Pages Warm Cocoa Retro Tree Reading Tee Cozy Winter Gift",
+    "etiketler": [
+     "book lover shirt",
+     "christmas book shirt",
+     "cozy christmas tee",
+     "retro christmas tee",
+     "hot cocoa shirt",
+     "bookish christmas",
+     "cozy winter shirt",
+     "reading christmas",
+     "cute christmas tree",
+     "book lover gift",
+     "cozy book shirt",
+     "librarian christmas",
+     "winter book lover"
+    ],
+    "aciklama": "Get cozy with this cute retro Christmas design featuring an adorable Christmas tree character curled up in an armchair with a good book and a steaming mug of hot cocoa topped with marshmallows. With twinkling cozy lights, clean thick outlines, and a limited palette of forest green, warm red, cream and cocoa brown, plus cozy retro lettering that says 'Cozy Pages Warm Cocoa', it adds humor and warmth to your winter look.\n\nPerfect for book lovers and women who adore the cozy winter aesthetic, this festive graphic captures the magic of reading season. It makes a thoughtful Christmas gift for readers, librarians, book club friends, and hot cocoa fans who love cute, cozy holiday style.\n\n- {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Kakaolu Zencefilli Koşu",
+   "kaynak": "takvim",
+   "neden_simdi": "Christmas zamanında dönemde son liste tarihi 2026-12-04 öncesi zencefilli kurabiye ilgisi yıllık ortalamanın 3 katına çıkarken sıcak kakao ile birleşince aile pijama tişörtü talebini yakalıyor.",
+   "hedef_alici": "Çocuklu aileler ve yılbaşı aile pijama tişörtü arayan ebeveynler",
+   "slogan": "Tiny Legs Big Cocoa",
+   "prompt": "bold retro illustration of a funny gingerbread cookie man with frosting details holding an oversized mug of hot cocoa, marshmallow splash, cinnamon sticks, limited 4-color palette of gingerbread brown, cream white, cherry red and teal, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Tiny Legs Big Cocoa' in bold retro letters, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-12-04",
+   "risk": "dusuk",
+   "risk_nedeni": "",
+   "tasarim": {
+    "baski": "tasarim_06.png",
+    "onizleme": "tasarim_06.onizleme.webp",
+    "boyut": "2476x3352",
+    "seffaf_oran": 0.55,
+    "xmp_korundu": true
+   },
+   "liste": {
+    "baslik": "Gingerbread Christmas Shirt Tiny Legs Big Cocoa Funny Family Matching Holiday Tee Kids Holiday Shirt Cocoa Lover Gift",
+    "etiketler": [
+     "gingerbread shirt",
+     "christmas shirt",
+     "family matching tee",
+     "tiny legs cocoa",
+     "funny holiday tee",
+     "cocoa lover gift",
+     "kids christmas tee",
+     "holiday pajama tee",
+     "gingerbread lover",
+     "cute christmas tee",
+     "family christmas",
+     "matching holiday",
+     "hot cocoa shirt"
+    ],
+    "aciklama": "Add some humor to your holiday look with this retro Tiny Legs Big Cocoa design. It shows a funny gingerbread cookie man with frosting details holding a big mug of hot cocoa with marshmallow splash and cinnamon sticks, finished with bold retro lettering in gingerbread brown, cream white, cherry red and teal.\n\nPerfect for Christmas family time, matching holiday photos, cozy winter nights and gifts for cocoa lovers. A playful pick for parents and kids who love cute gingerbread style during the holiday season.\n\n- {{FACT_NEEDED}}\n\nDesign note: this design was created with the help of AI image generation.",
+    "sorunlar": [],
+    "eksik_bilgi": true
+   }
+  },
+  {
+   "baslik": "Yeni Yıla Örgüyle",
+   "kaynak": "takvim",
+   "neden_simdi": "New Year zamanında dönemde son liste tarihi 2026-12-11 öncesi örgü teması 1,07 göreli ivme ile yükselirken yılbaşı esprisi ile birleşince karar dönemi hediyesi olarak öne çıkıyor.",
+   "hedef_alici": "El işi ve örgü seven kadınlar ve yeni yıl hediyesi arayanlar",
+   "slogan": "Knit A Better Year",
+   "prompt": "bold retro illustration of a disco ball made of yarn with knitting needles as sparkle sticks, party confetti and stars around two yarn balls, limited 4-color palette of navy blue, gold yellow, magenta pink and cream, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Knit A Better Year' in bold retro party lettering, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2026-12-11",
+   "risk": "dusuk",
+   "risk_nedeni": ""
+  },
+  {
+   "baslik": "Yalnız Gitar Sevgilisi",
+   "kaynak": "takvim",
+   "neden_simdi": "Valentine zamanında dönemde son liste tarihi 2027-01-24 uzakken gitar teması 1,01 göreli ivme ile yükseliyor ve anti-valentine esprisi ile birleşince müzisyen nişine yıl boyu satış sağlıyor.",
+   "hedef_alici": "Sevgililer Gününü ciddiye almayan genç müzisyenler ve komik hediye arayanlar",
+   "slogan": "Strum Break Hearts Softly",
+   "prompt": "bold retro illustration of a vintage acoustic guitar decorated with small cracked hearts and band-aids, single bent rose, limited 4-color palette of dusty rose, dark charcoal, cream and olive green, clean thick outlines, touch of humor, screen-print friendly, with slogan 'Strum Break Hearts Softly' in bold retro lettering, isolated on plain pure white background, no t-shirt, no mockup, no text other than the slogan",
+   "son_liste_tarihi": "2027-01-24",
+   "risk": "dusuk",
+   "risk_nedeni": ""
+  }
+ ],
+ "maliyet_usd_tahmini": 0.129
+}
