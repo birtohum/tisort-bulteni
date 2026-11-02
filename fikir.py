@@ -38,6 +38,9 @@ average = yukselis; recent momentum vs others = ivme_goreli):
 
 USABLE GENERIC TRENDS TODAY (already filtered): {gundem}
 
+THIS SHOP'S OWN SALES (strongest signal when present; build on what already sells, e.g. new seasonal twists on
+best-selling themes): {satis}
+
 DESIGNER STYLE: {stil}
 
 Rules:
@@ -97,12 +100,17 @@ def temalar_hazirla(mev, n=15):
     return gecerli[:n]
 
 
-def fikirler(bugun, takvim, temalar, gundem_kullanilir, stil, n=8):
+def fikirler(bugun, takvim, temalar, gundem_kullanilir, stil, n=8, satis=None):
     t = "\n".join(f"- {g['ad']} {g['tarih']}: {g['durum']} (ideal listing by {g['ideal_liste']}, "
                   f"latest {g['en_gec_liste']}); note: {g['ipucu']}" for g in takvim)
     tm = "\n".join(f"- {m['tema']}: yukselis {m['yukselis']}, ivme_goreli {m['ivme_goreli']}" for m in temalar)
     g = ", ".join(x["genel_tema"] for x in gundem_kullanilir) or "none"
-    liste = _sor_json(FIKIR_ISTEM.format(bugun=bugun, n=n, takvim=t, temalar=tm, gundem=g, stil=stil),
+    st = "none available"
+    if satis:
+        st = ("best sellers: " + "; ".join(f"{u['urun']} ({u['adet']} sold, last 30 days {u['son30']})" for u in satis["en_cok"][:6])
+              + " | top themes: " + ", ".join(f"{k} {v}" for k, v in satis["tema"][:6])
+              + " | shirt colors: " + ", ".join(f"{k} {v}" for k, v in satis["renk"][:4]))
+    liste = _sor_json(FIKIR_ISTEM.format(bugun=bugun, n=n, takvim=t, temalar=tm, gundem=g, stil=stil, satis=st),
                       "fikir")["fikirler"]
     # risk: önce kod, sonra model
     metinler = "\n".join(f"{i + 1}. slogan: {f.get('slogan', '')} | image: {f.get('prompt', '')}" for i, f in enumerate(liste))

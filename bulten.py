@@ -25,6 +25,9 @@ STIL = ("bold retro illustration with clean thick outlines and a touch of humor,
 e = html.escape
 
 
+SATIS = KOK / "veri" / "satis_rapor.json"  # satis.py çıktısı buraya kopyalanırsa fikirler satışa göre ağırlıklanır
+
+
 def calistir(n_fikir=8, n_gorsel=6):
     bugun = date.today()
     klasor = KOK / "cikti" / bugun.strftime("%Y%m%d")
@@ -37,7 +40,8 @@ def calistir(n_fikir=8, n_gorsel=6):
     suzulmus = fikir.gundem_suz(gundem)
     kullanilir = [g for g in suzulmus if g.get("karar") == "kullanilabilir"]
     fk = fikir.fikirler(bugun.isoformat(), [t for t in tk if t["durum"] != "geç kalındı"], temalar, kullanilir,
-                        STIL.split(" (VARSAYILAN")[0], n_fikir)
+                        STIL.split(" (VARSAYILAN")[0], n_fikir,
+                        json.loads(SATIS.read_text(encoding="utf-8")) if SATIS.exists() else None)
 
     uygun = [f for f in fk if f["risk"] == "dusuk"][:n_gorsel]
 
@@ -93,6 +97,8 @@ def sayfa(v, klasor):
         gorsel = (f"<div class='gorseller'><figure class='acik'><img alt='' src='{_gorsel(klasor, t['onizleme'])}'><figcaption>açık tişört</figcaption></figure>"
                   f"<figure class='koyu'><img alt='' src='{_gorsel(klasor, t['onizleme'])}'><figcaption>koyu tişört</figcaption></figure></div>"
                   f"<p class='soluk'>Baskı dosyası: {e(t['baski'])} ({t['boyut']}, şeffaf, köken bilgisi {'korundu' if t['xmp_korundu'] else 'YOK'})</p>"
+                  + (f"<p class='uyari-yazi'>Tasarımın %{round(t['kaybolan_oran'] * 100)}'i beyaza çok yakın: beyaz tişörtte kaybolabilir, kontrol edin.</p>"
+                     if t.get("kaybolan_oran", 0) > 0.2 else "")
                   if "onizleme" in t else f"<p class='kotu'>Görsel üretilemedi: {e(t.get('hata', ''))}</p>")
         liste = ""
         if "baslik" in l:

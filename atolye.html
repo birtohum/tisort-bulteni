@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tasarım Atölyesi</title>
+<style>
+:root{--bg:#f6f4ef;--yuzey:#fff;--yazi:#1d1c1a;--soluk:#6a675f;--cizgi:#e3dfd5;--vurgu:#2f5d8a;--vurgu-yazi:#fff;--uyari:#9a5b00;--kotu:#a3271c;--etiket:#efebe2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151513;--yuzey:#1f1e1b;--yazi:#edebe4;--soluk:#a3a097;--cizgi:#35332e;--vurgu:#8cb8e6;--vurgu-yazi:#0d1f31;--uyari:#f0b14a;--kotu:#f08a7e;--etiket:#2a2925}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--yazi);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.sar{max-width:1120px;margin:0 auto;padding:20px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+h1{font:600 24px/1.2 Georgia,serif;margin:0}
+.soluk{color:var(--soluk)}.kucuk{font-size:13px}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0}
+nav button{border-radius:999px}
+nav button.secili{background:var(--yazi);color:var(--bg);border-color:var(--yazi)}
+.panel{display:none;background:var(--yuzey);border:1px solid var(--cizgi);border-radius:10px;padding:16px;margin-bottom:16px}
+.panel.acik{display:block}
+.panel h2{font-size:16px;margin:0 0 4px}
+label{display:block;font-size:13px;color:var(--soluk);margin:10px 0 4px}
+input[type=text],textarea{width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--cizgi);border-radius:6px;padding:8px}
+button{font:inherit;border-radius:6px;padding:7px 13px;cursor:pointer;border:1px solid var(--cizgi);background:var(--yuzey);color:var(--yazi)}
+button.ana{background:var(--vurgu);color:var(--vurgu-yazi);border-color:var(--vurgu);font-weight:600}
+button:disabled{opacity:.55;cursor:wait}
+.satir{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.adaylar button{margin:4px 4px 0 0}
+.uyari{color:var(--uyari);font-size:13px}.kotu{color:var(--kotu)}
+.izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.kart{background:var(--yuzey);border:1px solid var(--cizgi);border-radius:10px;padding:10px}
+.onizleme{border-radius:8px;padding:8px;background:#f1efe9}
+.onizleme.koyu{background:#23252b}
+.onizleme img{width:100%;height:auto;display:block}
+.kart .satir{margin-top:8px;gap:6px}
+.kart .satir button,.kart .satir a{font-size:13px;padding:5px 9px}
+.kart a{color:var(--vurgu)}
+.etiket{font-size:12px;background:var(--etiket);border-radius:4px;padding:1px 7px}
+.mockup img{width:100%;border-radius:8px;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px solid var(--cizgi);padding:5px 8px;text-align:left}
+#durum{position:sticky;top:0;z-index:2;background:var(--vurgu);color:var(--vurgu-yazi);padding:8px 12px;border-radius:8px;display:none;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="sar">
+<header><h1>Tasarım Atölyesi</h1><span class="soluk kucuk" id="ust"></span></header>
+<p class="soluk kucuk">Taslaklar yapay zekâ ile üretilir. Etsy'de "yapay zekâ kullandım" beyanı işaretlenmeli; çoğu üründe en az bir gerçek
+ürün fotoğrafı gerekir (mockup ek görsel olabilir). Marka/karakter/ünlü içeren konular kullanmayın.</p>
+
+<nav id="sekmeler">
+  <button data-p="tasarim" class="secili">Yeni tasarım</button>
+  <button data-p="tarz">Tarzım</button>
+  <button data-p="evcil">Evcil hayvan</button>
+  <button data-p="aile">Aile seti</button>
+  <button data-p="seri">Seri</button>
+  <button data-p="satis">Satış raporu</button>
+  <button data-p="bulten">Haftalık bülten</button>
+</nav>
+<div id="durum" role="status"></div>
+
+<section class="panel acik" id="p-tasarim">
+  <h2>Yeni tasarım</h2>
+  <p class="soluk kucuk" id="tarz-notu"></p>
+  <label for="konu">Konu (İngilizce daha iyi sonuç verir)</label>
+  <input type="text" id="konu" placeholder="ör. a sloth doing yoga at sunrise">
+  <div class="satir"><button id="slogan-oner">Slogan öner</button><span class="adaylar" id="adaylar"></span></div>
+  <label for="slogan">Slogan (boş bırakılabilir)</label>
+  <input type="text" id="slogan" placeholder="ör. Namastay In Bed">
+  <div class="satir"><button class="ana" id="tasarim-ciz">Çiz</button></div>
+</section>
+
+<section class="panel" id="p-tarz">
+  <h2>Tarzım</h2>
+  <p class="soluk kucuk">Kendi tasarımlarınızdan 2-6 tanesini yükleyin. Tarzınız çıkarılır; sonraki bütün çizimler bu tarza göre yapılır
+  ve ilk iki tasarım örnek olarak modele gösterilir.</p>
+  <input type="file" id="tarz-dosya" accept="image/*" multiple>
+  <div class="satir"><button class="ana" id="tarz-cikar">Tarzımı öğren</button></div>
+  <p id="tarz-sonuc"></p>
+</section>
+
+<section class="panel" id="p-evcil">
+  <h2>Evcil hayvan portresi</h2>
+  <p class="uyari">Ücretsiz Meta kredisi kullanılırken gönderilen görseller Meta'nın ürün geliştirmesinde kullanılabilir.
+  Gerçek müşteri fotoğrafı göndermeden önce ücretli kullanıma geçin ya da müşteriden açık izin alın.</p>
+  <input type="file" id="evcil-dosya" accept="image/*">
+  <label for="evcil-yazi">Yazı (ör. hayvanın adı, boş bırakılabilir)</label>
+  <input type="text" id="evcil-yazi" placeholder="ör. Good Boy Club">
+  <div class="satir"><button class="ana" id="evcil-ciz">Portre çiz</button></div>
+</section>
+
+<section class="panel" id="p-aile">
+  <h2>Aile seti</h2>
+  <label for="aile-konsept">Konsept</label>
+  <input type="text" id="aile-konsept" placeholder="ör. bears roasting marshmallows around a campfire">
+  <label for="aile-uyeler">Üyeler (virgülle)</label>
+  <input type="text" id="aile-uyeler" value="Papa,Mama,Kid,Baby">
+  <div class="satir"><button class="ana" id="aile-ciz">Seti çiz</button><span class="soluk kucuk">~1 dakika</span></div>
+</section>
+
+<section class="panel" id="p-seri">
+  <h2>Seri koleksiyon</h2>
+  <label for="seri-tema">Seri adı</label>
+  <input type="text" id="seri-tema" placeholder="ör. Cats With Jobs">
+  <label for="seri-ogeler">Her satıra bir tasarım (en fazla 8)</label>
+  <textarea id="seri-ogeler" rows="4" placeholder="a cat nurse with stethoscope&#10;a cat chef tasting soup"></textarea>
+  <div class="satir"><button class="ana" id="seri-ciz">Seriyi çiz</button></div>
+</section>
+
+<section class="panel" id="p-satis">
+  <h2>Satış raporu</h2>
+  <p class="soluk kucuk">Etsy Shop Manager → Settings → Options → Download Data → "Order Items" CSV dosyasını yükleyin.
+  Alıcı adı ve adres sütunları okunmadan atılır; rapor bu bilgisayarda hesaplanır, modele gönderilmez.
+  Haftalık bülten fikirleri bu rapora göre ağırlıklanır.</p>
+  <input type="file" id="satis-dosya" accept=".csv">
+  <div class="satir"><button class="ana" id="satis-yukle">Raporu çıkar</button></div>
+  <div id="satis-sonuc"></div>
+</section>
+
+<section class="panel" id="p-bulten">
+  <h2>Haftalık bülten</h2>
+  <p class="soluk kucuk">Takvim + mevsimsel ilgi + (varsa) satış raporu → 8 fikir, 6 taslak tasarım ve Etsy metinleri. ~3 dakika.</p>
+  <div class="satir"><button class="ana" id="bulten-calistir">Yeni bülten üret</button><span id="bulten-durum" class="soluk kucuk"></span></div>
+</section>
+
+<h2 style="font-size:16px;margin:24px 0 8px">Tasarımlar</h2>
+<div class="izgara" id="kartlar"><p class="soluk kucuk">Henüz tasarım yok.</p></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const klasor = ad => ad.includes("/") ? ad.split("/")[0] + "/" : "";
+
+document.querySelectorAll("#sekmeler button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#sekmeler button").forEach(x => x.classList.toggle("secili", x === b));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("acik", p.id === "p-" + b.dataset.p));
+});
+
+async function api(yol, govde, dugme, mesaj) {
+  const d = $("durum");
+  if (dugme) dugme.disabled = true;
+  d.style.display = "block"; d.textContent = mesaj || "Çalışıyor…";
+  try {
+    const r = await fetch(yol, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(govde || {})});
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.hata || r.status);
+    d.style.display = "none";
+    return j;
+  } catch (e) { d.textContent = "Olmadı: " + e.message; setTimeout(() => d.style.display = "none", 6000); throw e; }
+  finally { if (dugme) dugme.disabled = false; durumYenile(); }
+}
+const dosyaOku = f => new Promise((ok, hata) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = hata; r.readAsDataURL(f); });
+
+function kartEkle(k) {
+  const bos = $("kartlar").querySelector("p"); if (bos) bos.remove();
+  const kl = klasor(k.ad), koyu = k.tur === "koyu";
+  const uyari = (k.kaybolan_oran ?? 0) > 0.2
+    ? `<p class="uyari">Tasarımın %${Math.round(k.kaybolan_oran * 100)}'i ${koyu ? "koyu" : "açık"} tişört rengine çok yakın; baskıda kaybolabilir, kontrol edin.</p>` : "";
+  const el = document.createElement("article");
+  el.className = "kart";
+  el.innerHTML = `<div class="onizleme ${koyu ? "koyu" : ""}"><img alt="Tasarım önizlemesi" src="/dosya/${kl}${esc(k.onizleme)}"></div>
+    <div class="satir"><span class="etiket">${esc(k.tur)}</span><span class="soluk kucuk">${esc(k.boyut)}</span></div>${uyari}
+    <div class="satir">
+      <a href="/dosya/${kl}${esc(k.baski)}" download>Baskı PNG</a>
+      ${koyu ? "" : `<button data-is="koyu">Koyu tişört</button>`}
+      <button data-is="mockup">Mockup</button>
+    </div><div class="mockup"></div>`;
+  el.querySelectorAll("button").forEach(b => b.onclick = async () => {
+    if (b.dataset.is === "koyu") {
+      const j = await api("/api/koyu", {orijinal: k.orijinal}, b, "Koyu versiyon çiziliyor…");
+      j.kartlar.forEach(kartEkle);
+    } else {
+      const j = await api("/api/mockup", {orijinal: k.orijinal, tisort: koyu ? "black crew-neck t-shirt" : ""}, b, "Mockup hazırlanıyor…");
+      el.querySelector(".mockup").innerHTML = `<img alt="Mockup" src="/dosya/${esc(j.mockup)}"><p class="soluk kucuk">Mockup: Etsy'de ek görsel olarak kullanın.</p>`;
+    }
+  });
+  $("kartlar").prepend(el);
+}
+
+$("slogan-oner").onclick = async e => {
+  if (!$("konu").value.trim()) return $("konu").focus();
+  const j = await api("/api/slogan", {konu: $("konu").value}, e.target, "Slogan adayları yazılıyor…");
+  $("adaylar").innerHTML = j.adaylar.map(a => `<button title="${esc(a.neden)}">${esc(a.slogan)} · ${a.puan}/10</button>`).join("");
+  $("adaylar").querySelectorAll("button").forEach((b, i) => b.onclick = () => $("slogan").value = j.adaylar[i].slogan);
+};
+$("tasarim-ciz").onclick = async e => {
+  if (!$("konu").value.trim()) return $("konu").focus();
+  const j = await api("/api/tasarim", {konu: $("konu").value, slogan: $("slogan").value.trim()}, e.target, "Tasarım çiziliyor (~20 sn)…");
+  j.kartlar.forEach(kartEkle);
+};
+$("tarz-cikar").onclick = async e => {
+  const f = [...$("tarz-dosya").files]; if (!f.length) return;
+  const j = await api("/api/tarz", {gorseller: await Promise.all(f.slice(0, 6).map(dosyaOku))}, e.target, "Tarz inceleniyor…");
+  $("tarz-sonuc").textContent = j.tarz.ozet_tr;
+};
+$("evcil-ciz").onclick = async e => {
+  const f = $("evcil-dosya").files[0]; if (!f) return;
+  const j = await api("/api/evcil", {foto: await dosyaOku(f), yazi: $("evcil-yazi").value.trim()}, e.target, "Portre çiziliyor…");
+  j.kartlar.forEach(kartEkle);
+};
+$("aile-ciz").onclick = async e => {
+  if (!$("aile-konsept").value.trim()) return $("aile-konsept").focus();
+  const j = await api("/api/aile", {konsept: $("aile-konsept").value, uyeler: $("aile-uyeler").value}, e.target, "Aile seti çiziliyor (~1 dk)…");
+  j.kartlar.reverse().forEach(kartEkle);
+};
+$("seri-ciz").onclick = async e => {
+  if (!$("seri-tema").value.trim() || !$("seri-ogeler").value.trim()) return;
+  const j = await api("/api/seri", {tema: $("seri-tema").value, ogeler: $("seri-ogeler").value}, e.target, "Seri çiziliyor…");
+  j.kartlar.reverse().forEach(kartEkle);
+};
+$("satis-yukle").onclick = async e => {
+  const f = $("satis-dosya").files[0]; if (!f) return;
+  const j = await api("/api/satis", {csv: await dosyaOku(f)}, e.target, "Rapor hesaplanıyor…");
+  satisGoster(j.rapor, j.atilan_sutunlar);
+};
+function satisGoster(r, atilan) {
+  if (!r) return;
+  const satir = u => `<tr><td>${esc(u.urun)}</td><td>${u.adet}</td><td>${u.son30}</td><td>${u.onceki30}</td><td>${u.tutar}</td></tr>`;
+  $("satis-sonuc").innerHTML = `<p><b>${r.toplam_adet}</b> adet · <b>${r.toplam_tutar}</b> toplam</p>
+    <div style="overflow-x:auto"><table><tr><th>En çok satan</th><th>Adet</th><th>Son 30 gün</th><th>Önceki 30</th><th>Tutar</th></tr>${r.en_cok.map(satir).join("")}</table></div>
+    <p class="kucuk">Temalar: ${r.tema.map(([k, v]) => esc(k) + " " + v).join(", ") || "-"}<br>
+    Renkler: ${r.renk.map(([k, v]) => esc(k) + " " + v).join(", ") || "-"}<br>Bedenler: ${r.beden.map(([k, v]) => esc(k) + " " + v).join(", ") || "-"}</p>
+    ${atilan ? `<p class="soluk kucuk">Okunmadan atılan sütunlar: ${atilan.map(esc).join(", ")}</p>` : ""}`;
+}
+$("bulten-calistir").onclick = e => api("/api/bulten", {}, e.target, "Bülten arka planda başladı (~3 dk)…");
+
+async function durumYenile() {
+  try {
+    const d = await (await fetch("/api/durum")).json();
+    $("ust").textContent = `Meta harcaması (bu proje, görseller tahmini): ${d.harcanan} $`;
+    $("tarz-notu").textContent = d.tarz ? "Tarzınız: " + d.tarz.ozet_tr : "Henüz tarzınız öğrenilmedi; varsayılan retro tarz kullanılır (Tarzım sekmesi).";
+    if (d.tarz) $("tarz-sonuc").textContent = d.tarz.ozet_tr;
+    const b = d.bulten;
+    $("bulten-durum").innerHTML = b.calisiyor ? "Çalışıyor…" : b.hata ? `<span class="kotu">${esc(b.hata)}</span>` : b.son ? `<a href="${esc(b.son)}" target="_blank" rel="noopener">Son bülteni aç</a>` : "";
+    if (b.calisiyor) setTimeout(durumYenile, 10000);
+    if (d.satis && !$("satis-sonuc").innerHTML) satisGoster(d.satis);
+  } catch (_) {}
+}
+durumYenile();
+</script>
+</body>
+</html>

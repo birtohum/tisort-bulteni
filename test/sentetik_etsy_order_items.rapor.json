@@ -1,0 +1,142 @@
+{
+ "toplam_adet": 160,
+ "toplam_tutar": 3998.4,
+ "en_cok": [
+  {
+   "urun": "Retro Cat Coffee Shirt Not A Morning Person",
+   "adet": 53,
+   "tutar": 1324.47,
+   "son30": 9,
+   "onceki30": 10
+  },
+  {
+   "urun": "Funny Teacher Shirt Retro",
+   "adet": 34,
+   "tutar": 849.66,
+   "son30": 6,
+   "onceki30": 12
+  },
+  {
+   "urun": "Camping Bear Family Shirt Papa Bear",
+   "adet": 23,
+   "tutar": 574.77,
+   "son30": 3,
+   "onceki30": 7
+  },
+  {
+   "urun": "Highland Cow Christmas Shirt",
+   "adet": 18,
+   "tutar": 449.82,
+   "son30": 18,
+   "onceki30": 0
+  },
+  {
+   "urun": "Frog Mushroom Cottagecore Tee",
+   "adet": 17,
+   "tutar": 424.83,
+   "son30": 3,
+   "onceki30": 5
+  },
+  {
+   "urun": "Gingerbread Hot Cocoa Christmas Tee",
+   "adet": 15,
+   "tutar": 374.85,
+   "son30": 15,
+   "onceki30": 0
+  }
+ ],
+ "yukselen": [
+  {
+   "urun": "Highland Cow Christmas Shirt",
+   "adet": 18,
+   "tutar": 449.82,
+   "son30": 18,
+   "onceki30": 0
+  },
+  {
+   "urun": "Gingerbread Hot Cocoa Christmas Tee",
+   "adet": 15,
+   "tutar": 374.85,
+   "son30": 15,
+   "onceki30": 0
+  }
+ ],
+ "tema": [
+  [
+   "cat",
+   53
+  ],
+  [
+   "coffee",
+   53
+  ],
+  [
+   "teacher",
+   34
+  ],
+  [
+   "camping",
+   23
+  ],
+  [
+   "highland cow",
+   18
+  ],
+  [
+   "frog",
+   17
+  ],
+  [
+   "mushroom",
+   17
+  ],
+  [
+   "gingerbread",
+   15
+  ],
+  [
+   "hot cocoa",
+   15
+  ]
+ ],
+ "renk": [
+  [
+   "black",
+   55
+  ],
+  [
+   "navy",
+   40
+  ],
+  [
+   "white",
+   37
+  ],
+  [
+   "heather grey",
+   28
+  ]
+ ],
+ "beden": [
+  [
+   "M",
+   51
+  ],
+  [
+   "L",
+   48
+  ],
+  [
+   "XL",
+   30
+  ],
+  [
+   "S",
+   19
+  ],
+  [
+   "2XL",
+   12
+  ]
+ ]
+}

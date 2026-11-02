@@ -1,0 +1,131 @@
+{
+ "slogan_kardan": [
+  {
+   "slogan": "Frost Outside Yarn Inside",
+   "puan": 7,
+   "neden": "görselle uyumlu hediye olur"
+  },
+  {
+   "slogan": "My Scarf Takes Forever",
+   "puan": 6,
+   "neden": "örgücüler anlar ama zayıf"
+  },
+  {
+   "slogan": "Too Cold Not Knitting",
+   "puan": 6,
+   "neden": "kış sever ama hediyelik değil"
+  }
+ ],
+ "slogan_hindi": [
+  {
+   "slogan": "Eat Drumstick Score Pie Today",
+   "puan": 7,
+   "neden": "Neşeli hediye olarak olur"
+  },
+  {
+   "slogan": "Pass The Gravy Touchdown Turkey",
+   "puan": 6,
+   "neden": "Komik ama hediye için zayıf"
+  },
+  {
+   "slogan": "Hut Hut Gobble Gobble Score",
+   "puan": 6,
+   "neden": "Sevimli ama satın almam"
+  }
+ ],
+ "koyu_03": {
+  "baski": "koyu_03.png",
+  "onizleme": "koyu_03.onizleme.webp",
+  "boyut": "3142x2542",
+  "seffaf_oran": 0.71,
+  "xmp_korundu": true
+ },
+ "koyu_06": {
+  "baski": "koyu_06.png",
+  "onizleme": "koyu_06.onizleme.webp",
+  "boyut": "2526x3402",
+  "seffaf_oran": 0.56,
+  "xmp_korundu": true
+ },
+ "mockup_03": "tasarim_03.mockup.webp",
+ "evcil": {
+  "baski": "evcil_golden.png",
+  "onizleme": "evcil_golden.onizleme.webp",
+  "boyut": "2768x2776",
+  "seffaf_oran": 0.58,
+  "xmp_korundu": true
+ },
+ "aile": {
+  "Papa": {
+   "baski": "aile_papa.png",
+   "onizleme": "aile_papa.onizleme.webp",
+   "boyut": "2700x2746",
+   "seffaf_oran": 0.58,
+   "xmp_korundu": true
+  },
+  "Mama": {
+   "baski": "aile_mama.png",
+   "onizleme": "aile_mama.onizleme.webp",
+   "boyut": "2732x2764",
+   "seffaf_oran": 0.57,
+   "xmp_korundu": true
+  },
+  "Kid": {
+   "baski": "aile_kid.png",
+   "onizleme": "aile_kid.onizleme.webp",
+   "boyut": "2774x2792",
+   "seffaf_oran": 0.61,
+   "xmp_korundu": true
+  },
+  "Baby": {
+   "baski": "aile_baby.png",
+   "onizleme": "aile_baby.onizleme.webp",
+   "boyut": "2768x2792",
+   "seffaf_oran": 0.59,
+   "xmp_korundu": true
+  }
+ },
+ "seri": {
+  "a cat nurse with stethoscope": {
+   "baski": "seri_01.png",
+   "onizleme": "seri_01.onizleme.webp",
+   "boyut": "2616x3014",
+   "seffaf_oran": 0.46,
+   "xmp_korundu": true
+  },
+  "a cat teacher at a chalkboard": {
+   "baski": "seri_02.png",
+   "onizleme": "seri_02.onizleme.webp",
+   "boyut": "2654x3014",
+   "seffaf_oran": 0.47,
+   "xmp_korundu": true
+  },
+  "a cat chef tasting soup": {
+   "baski": "seri_03.png",
+   "onizleme": "seri_03.onizleme.webp",
+   "boyut": "2590x3014",
+   "seffaf_oran": 0.48,
+   "xmp_korundu": true
+  },
+  "a cat firefighter with a hose": {
+   "baski": "seri_04.png",
+   "onizleme": "seri_04.onizleme.webp",
+   "boyut": "2738x3004",
+   "seffaf_oran": 0.47,
+   "xmp_korundu": true
+  }
+ },
+ "tarz": {
+  "tarz": {
+   "ozet_tr": "Kalın konturlu vintage retro maskot tarzında, neşeli ve esprili tişört illüstrasyonu. Turuncu-yeşil-krem renk paleti, kabarık retro yazılar ve pürüzsüz vektör detaylarla eğlenceli bayram havası taşır.",
+   "stil_istemi": "Retro vintage cartoon mascot t-shirt graphic style, cheerful anthropomorphic animal character centered on pure white background, thick bold rounded dark outlines in very dark forest green-brown #1A332C, clean smooth vector line work with playful exaggerated proportions, big expressive eyes and wide smile, flat cel coloring with simple cream highlights #FFF2CC and minimal inner detail lines, light distressed vintage texture and subtle halftone dot shading, limited warm palette dominated by burnt orange #D9642A, forest green #2A5E4E, golden yellow #FFB02E, cream #FFF2CC, chocolate brown #7A4A2B and festive red #C63A2D, medium detail simplified shapes with stylized fur-feather texture, composition with one large dynamic character filling center and bold playful headline typography placed above or below in chunky rounded bubble or collegiate slab letters with thick dark outline and cream or orange fill, optional curved ribbon banner for text, decorated with small recurring motifs like four-point sparkle stars, swirl steam lines, music notes and soft halftone blobs, wholesome goofy family-friendly festive pun humor tone, isolated print-ready vector illustration, no background, no photorealism."
+  },
+  "tasarim": {
+   "baski": "tarz_capybara.png",
+   "onizleme": "tarz_capybara.onizleme.webp",
+   "boyut": "2846x2512",
+   "seffaf_oran": 0.58,
+   "xmp_korundu": true
+  }
+ }
+}

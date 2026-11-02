@@ -73,12 +73,20 @@ def sor(icerik, model=MODEL, max_tokens=8000, json_mod=False, etiket=""):
 RESIM_TAHMINI_USD = 0.02  # muse-image fiyatı Meta'da yayımlanmamış; panelden doğrulanana kadar temkinli tahmin
 
 
-def gorsel_uret(istem, etiket="gorsel"):
-    """muse-image-1.0 ile tek görsel üretir; (webp baytları, kullanım) döndürür."""
+def _veri_url(b):
+    tur = "webp" if b[8:12] == b"WEBP" else "png" if b[:4] == b"\x89PNG" else "jpeg"
+    return f"data:image/{tur};base64," + base64.b64encode(b).decode()
+
+
+def gorsel_uret(istem, etiket="gorsel", referanslar=()):
+    """muse-image-1.0 ile tek görsel üretir; (webp baytları, kullanım) döndürür.
+    referanslar: görsel baytları (tarz örneği, düzenlenecek tasarım, evcil hayvan fotoğrafı...)."""
     if harcanan() >= TAVAN:
         raise SystemExit(f"harcama tavanı {TAVAN} $ doldu")
+    girdi = istem if not referanslar else [{"role": "user", "content": [{"type": "input_text", "text": istem}] + [
+        {"type": "input_image", "image_url": _veri_url(r)} for r in referanslar]}]
     istek = urllib.request.Request(URL.replace("chat/completions", "responses"), data=json.dumps(
-        {"model": "muse-image-1.0", "store": False, "input": istem}).encode(), headers={
+        {"model": "muse-image-1.0", "store": False, "input": girdi}).encode(), headers={
         "Authorization": "Bearer " + _anahtar(), "Content-Type": "application/json"})
     for deneme in range(4):
         try:
