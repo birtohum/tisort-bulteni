@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tişört Atölyesi</title>
+<style>
+:root{
+  --bg:#fbf8f2;--yuzey:#ffffff;--yazi:#1f1d1a;--soluk:#5d5950;--cizgi:#e4dfd4;--golge:0 1px 2px rgba(40,30,10,.06),0 4px 14px rgba(40,30,10,.06);
+  --ana:#c2410c;--ana-koyu:#9a3412;--ana-yazi:#ffffff;--ana-acik:#fff1e8;
+  --iyi:#166534;--iyi-acik:#e8f5ec;--uyari:#8a4b00;--uyari-acik:#fff5dc;--kotu:#a3271c;--kotu-acik:#fdeceb;
+  --secili:#1f1d1a;--odak:#2563eb;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614;--yuzey:#211f1c;--yazi:#f1eee8;--soluk:#b3aea3;--cizgi:#3a3732;--golge:none;
+  --ana:#f97316;--ana-koyu:#fb923c;--ana-yazi:#1b0d03;--ana-acik:#3a2415;
+  --iyi:#6ee7a0;--iyi-acik:#173222;--uyari:#f5c25b;--uyari-acik:#3a2d12;--kotu:#f6a198;--kotu-acik:#3c1d1a;--secili:#f1eee8;--odak:#93b4ff}}
+:root[data-theme="dark"]{
+  --bg:#171614;--yuzey:#211f1c;--yazi:#f1eee8;--soluk:#b3aea3;--cizgi:#3a3732;--golge:none;
+  --ana:#f97316;--ana-koyu:#fb923c;--ana-yazi:#1b0d03;--ana-acik:#3a2415;
+  --iyi:#6ee7a0;--iyi-acik:#173222;--uyari:#f5c25b;--uyari-acik:#3a2d12;--kotu:#f6a198;--kotu-acik:#3c1d1a;--secili:#f1eee8;--odak:#93b4ff}
+html{font-size:19px}
+html.buyuk{font-size:23px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--yazi);font:1rem/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.sar{max-width:760px;margin:0 auto;padding:12px 16px 80px}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--odak);outline-offset:3px}
+[hidden]{display:none!important}
+
+/* üst çubuk */
+.ust{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 0 10px}
+.marka{font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:8px;background:none;border:0;padding:6px 0;cursor:pointer}
+.marka b{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:10px;background:var(--ana);color:var(--ana-yazi);font-size:1.1rem}
+.kucukdugme{background:var(--yuzey);border:2px solid var(--cizgi);border-radius:12px;padding:6px 12px;cursor:pointer;font-weight:600;min-height:44px}
+
+/* adım göstergesi */
+.adimlar{display:flex;gap:6px;margin:4px 0 22px;list-style:none;padding:0}
+.adimlar li{flex:1;text-align:center;font-size:.8rem;color:var(--soluk);font-weight:600}
+.adimlar li::before{content:"";display:block;height:8px;border-radius:99px;background:var(--cizgi);margin-bottom:6px}
+.adimlar li.su{color:var(--yazi)}.adimlar li.su::before{background:var(--ana)}
+.adimlar li.gecti::before{background:var(--iyi)}
+
+h1{font-size:1.75rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+.alt{color:var(--soluk);margin:0 0 18px}
+h2{font-size:1.15rem;margin:30px 0 12px}
+
+/* büyük düğmeler */
+.dugme{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:68px;padding:14px 20px;border-radius:16px;
+  border:2px solid var(--cizgi);background:var(--yuzey);font-size:1.1rem;font-weight:700;cursor:pointer;text-decoration:none;color:var(--yazi);box-shadow:var(--golge);
+  transition:transform .08s ease,background .15s}
+.dugme:active{transform:scale(.98)}
+.dugme.ana{background:var(--ana);border-color:var(--ana);color:var(--ana-yazi);font-size:1.25rem}
+.dugme.ana:hover{background:var(--ana-koyu);border-color:var(--ana-koyu)}
+.dugme:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.dugme .ik{font-size:1.4em;line-height:1}
+.iki{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.iki{grid-template-columns:1fr}}
+.yigin{display:grid;gap:12px}
+
+/* fikir kutusu */
+.fikir-kutu{background:var(--yuzey);border:2px solid var(--cizgi);border-radius:18px;padding:6px;box-shadow:var(--golge)}
+.fikir-kutu:focus-within{border-color:var(--ana)}
+textarea{width:100%;border:0;background:transparent;resize:none;padding:12px 14px;font-size:1.2rem;line-height:1.4;min-height:5.2em;outline:none}
+.kutu-alt{display:flex;gap:8px;flex-wrap:wrap;padding:4px 6px 6px}
+.kutu-alt button{min-height:52px;border-radius:12px;border:2px solid var(--cizgi);background:var(--bg);padding:6px 14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.kutu-alt button.dinliyor{background:var(--kotu-acik);border-color:var(--kotu);color:var(--kotu)}
+.foto-on{display:flex;align-items:center;gap:12px;padding:8px 10px}
+.foto-on img{width:84px;height:84px;object-fit:cover;border-radius:12px}
+.ipucu{color:var(--soluk);font-size:.9rem;margin:10px 4px 0}
+
+/* öneri kartları */
+.oneriler{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:620px){.oneriler{grid-template-columns:repeat(2,1fr)}}
+.oneri{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px;border-radius:16px;border:2px solid var(--cizgi);
+  background:var(--yuzey);cursor:pointer;min-height:112px;box-shadow:var(--golge)}
+.oneri:hover{border-color:var(--ana)}
+.oneri .em{font-size:1.9rem;line-height:1}
+.oneri .bas{font-weight:700;font-size:1rem;line-height:1.25}
+.rozet{font-size:.75rem;font-weight:700;border-radius:99px;padding:2px 9px;background:var(--iyi-acik);color:var(--iyi)}
+.rozet.acele{background:var(--uyari-acik);color:var(--uyari)}
+
+/* bilgi kutuları */
+.not{border-radius:16px;padding:14px 16px;background:var(--yuzey);border:2px solid var(--cizgi);margin-bottom:16px}
+.not.uyari{background:var(--uyari-acik);border-color:transparent;color:var(--uyari)}
+.not.kotu{background:var(--kotu-acik);border-color:transparent;color:var(--kotu)}
+.not.iyi{background:var(--iyi-acik);border-color:transparent;color:var(--iyi)}
+.anlasilan{display:flex;gap:12px;align-items:flex-start}
+.anlasilan p{margin:0;flex:1;font-size:1.05rem}
+.anlasilan .et{font-size:.8rem;color:var(--soluk);font-weight:700;text-transform:uppercase;letter-spacing:.04em;display:block}
+
+/* slogan seçenekleri */
+.secenek{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;border-radius:18px;border:2px solid var(--cizgi);
+  background:var(--yuzey);cursor:pointer;box-shadow:var(--golge);min-height:84px}
+.secenek:hover{border-color:var(--ana)}
+.secenek .yazi{font-family:Impact,"Arial Black","Segoe UI Black",sans-serif;font-size:1.35rem;letter-spacing:.02em;line-height:1.15;text-transform:uppercase}
+.secenek .anlam{color:var(--soluk);font-size:.9rem;display:block;margin-top:3px}
+.secenek .ok{margin-left:auto;font-size:1.5rem;color:var(--ana)}
+.kendi{display:flex;gap:8px;margin-top:10px}
+.kendi input{flex:1;min-width:0;min-height:60px;border-radius:14px;border:2px solid var(--cizgi);background:var(--yuzey);padding:0 14px;font-size:1.1rem}
+.kendi .dugme{width:auto;min-height:60px}
+
+/* iskelet yükleme */
+.iskelet{height:84px;border-radius:18px;background:linear-gradient(90deg,var(--cizgi) 0%,var(--yuzey) 50%,var(--cizgi) 100%);background-size:200% 100%;animation:parla 1.4s infinite linear;opacity:.7}
+@keyframes parla{from{background-position:200% 0}to{background-position:-200% 0}}
+
+/* tişört */
+.tisort{position:relative;width:100%;aspect-ratio:300/320;margin:0 auto}
+.tisort svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 6px 14px rgba(0,0,0,.12))}
+.tisort img.tas{position:absolute;left:50%;top:25%;transform:translateX(-50%);width:37%;max-height:52%;object-fit:contain;transition:opacity .4s}
+.tisort .yer{position:absolute;left:31%;top:25%;width:38%;height:48%;border:3px dashed currentColor;opacity:.35;border-radius:10px;display:grid;place-items:center;text-align:center;padding:6px;
+  font-family:Impact,"Arial Black",sans-serif;font-size:clamp(.8rem,3.2vw,1.3rem);line-height:1.1;text-transform:uppercase;animation:nefes 1.8s ease-in-out infinite}
+@keyframes nefes{50%{opacity:.75}}
+
+/* bekleme */
+.bekle-ust{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:22px;align-items:center}
+@media (max-width:620px){.bekle-ust{grid-template-columns:1fr}.bekle-ust .tisort{max-width:300px}}
+.asamalar{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:10px}
+.asamalar li{display:flex;align-items:center;gap:12px;font-size:1.05rem;color:var(--soluk)}
+.asamalar li .im{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:3px solid var(--cizgi);flex:none;font-size:.95rem;font-weight:800}
+.asamalar li.su{color:var(--yazi);font-weight:700}
+.asamalar li.su .im{border-color:var(--ana);border-top-color:transparent;animation:don 1s linear infinite}
+.asamalar li.tamam{color:var(--yazi)}
+.asamalar li.tamam .im{background:var(--iyi);border-color:var(--iyi);color:#fff}
+@keyframes don{to{transform:rotate(360deg)}}
+.cubuk{height:16px;border-radius:99px;background:var(--cizgi);overflow:hidden}
+.cubuk i{display:block;height:100%;width:0;background:var(--ana);border-radius:99px;transition:width .9s linear}
+.kalan{margin:8px 0 0;font-weight:600}
+.beklerken{margin-top:28px;background:var(--yuzey);border:2px solid var(--cizgi);border-radius:18px;padding:18px;box-shadow:var(--golge)}
+.beklerken .et{font-size:.8rem;font-weight:800;color:var(--ana);text-transform:uppercase;letter-spacing:.05em}
+.beklerken p{font-size:1.1rem;margin:6px 0 12px;min-height:3em}
+.noktalar{display:flex;gap:6px}
+.noktalar button{width:14px;height:14px;padding:0;border-radius:50%;border:0;background:var(--cizgi);cursor:pointer}
+.noktalar button.su{background:var(--ana)}
+.serit{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}
+.serit .k{flex:none;width:120px;scroll-snap-align:start}
+
+/* sonuç */
+.adaylar{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.adaylar{grid-template-columns:1fr}}
+.aday{background:var(--yuzey);border:2px solid var(--cizgi);border-radius:20px;padding:14px;display:grid;gap:12px;box-shadow:var(--golge)}
+.aday .tisort{max-width:320px}
+
+/* renkler */
+.renkler{display:flex;gap:10px;flex-wrap:wrap}
+.renk{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;cursor:pointer;padding:4px;font-size:.85rem;font-weight:600;color:var(--soluk);min-width:64px}
+.renk span{width:52px;height:52px;border-radius:50%;border:2px solid rgba(0,0,0,.18);box-shadow:inset 0 0 0 4px var(--bg)}
+.renk[aria-pressed="true"]{color:var(--yazi)}
+.renk[aria-pressed="true"] span{outline:4px solid var(--secili);outline-offset:2px}
+.detay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:640px){.detay{grid-template-columns:1fr}.detay .tisort{max-width:340px}}
+
+/* etsy metni */
+.alan{background:var(--yuzey);border:2px solid var(--cizgi);border-radius:16px;padding:14px;margin-bottom:12px}
+.alan .bas{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.alan .bas b{font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--soluk)}
+.alan .bas button{min-height:44px;border-radius:12px;border:2px solid var(--cizgi);background:var(--bg);padding:4px 14px;font-weight:700;cursor:pointer}
+.alan .bas button.oldu{background:var(--iyi-acik);color:var(--iyi);border-color:transparent}
+.alan pre{white-space:pre-wrap;font:inherit;margin:0;max-height:260px;overflow:auto}
+.etiketler{display:flex;flex-wrap:wrap;gap:6px}
+.etiketler span{background:var(--bg);border:1px solid var(--cizgi);border-radius:99px;padding:3px 10px;font-size:.9rem}
+
+.gecmis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:560px){.gecmis{grid-template-columns:repeat(3,1fr)}}
+.gecmis button{background:var(--yuzey);border:2px solid var(--cizgi);border-radius:14px;padding:6px;cursor:pointer;aspect-ratio:1;display:grid;place-items:center;position:relative}
+.gecmis img{max-width:100%;max-height:100%;object-fit:contain}
+.gecmis .kalp{position:absolute;top:4px;right:6px;font-size:.9rem}
+.ayak{margin-top:40px;color:var(--soluk);font-size:.85rem;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
+.ayak a{color:var(--soluk)}
+.ara-cizgi{height:1px;background:var(--cizgi);margin:26px 0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sar">
+  <div class="ust">
+    <button class="marka" id="eve" aria-label="Baştan başla"><b>👕</b> Tişört Atölyesi</button>
+    <button class="kucukdugme" id="buyut" aria-pressed="false">A+ Büyük yazı</button>
+  </div>
+  <ol class="adimlar" id="adimlar" aria-label="Adımlar">
+    <li data-a="1">1 · Fikir</li><li data-a="2">2 · Yazı</li><li data-a="3">3 · Tasarım</li>
+  </ol>
+
+  <div id="hata" class="not kotu" role="alert" hidden>
+    <strong>Bir sorun çıktı.</strong> <span id="hata-metin"></span>
+    <div class="iki" style="margin-top:12px"><button class="dugme ana" id="hata-tekrar">🔁 Tekrar dene</button><button class="dugme" id="hata-ev">🏠 Baştan başla</button></div>
+  </div>
+
+  <!-- 1. FİKİR -->
+  <section id="e-fikir" data-adim="1">
+    <h1>Ne çizelim?</h1>
+    <p class="alt">Aklınızdakini kendi cümlelerinizle yazın ya da aşağıdan bir fikre dokunun.</p>
+    <div class="fikir-kutu">
+      <label for="fikir" hidden>Tasarım fikri</label>
+      <textarea id="fikir" rows="3" maxlength="500" placeholder="Örnek: Gün doğarken yoga yapan tembel hayvan"></textarea>
+      <div class="foto-on" id="foto-on" hidden><img id="foto-img" alt="Yüklenen fotoğraf"><div><b>Fotoğraf eklendi.</b><br><span class="ipucu" style="margin:0">Bu hayvanı tişörte çizeceğim. Üstte bir not da yazabilirsiniz.</span></div></div>
+      <div class="kutu-alt">
+        <button id="mikrofon" hidden><span aria-hidden="true">🎤</span> Sesle söyle</button>
+        <button id="foto-dugme"><span aria-hidden="true">📷</span> <span id="foto-yazi">Evcil hayvan fotoğrafı ekle</span></button>
+        <input type="file" id="foto" accept="image/*" hidden>
+      </div>
+    </div>
+    <div style="margin-top:14px"><button class="dugme ana" id="devam" disabled>Devam <span class="ik" aria-hidden="true">→</span></button></div>
+    <p class="ipucu" id="devam-ipucu">Önce bir fikir yazın ya da fotoğraf ekleyin.</p>
+
+    <h2>Fikir mi lazım? Birine dokunun</h2>
+    <div class="oneriler" id="oneriler"></div>
+
+    <div id="gecmis-bolum" hidden>
+      <h2>Son tasarımlarınız</h2>
+      <div class="gecmis" id="gecmis"></div>
+    </div>
+  </section>
+
+  <!-- 2. YAZI -->
+  <section id="e-yazi" data-adim="2" hidden>
+    <div class="not anlasilan">
+      <p><span class="et">Şunu çizeceğim</span><span id="anlasilan">…</span></p>
+      <button class="kucukdugme" id="degistir">✏️ Değiştir</button>
+    </div>
+    <div class="not uyari" id="marka-uyari" hidden>⚠️ Bu fikirde bir marka, çizgi film karakteri, takım ya da ünlü olabilir. Etsy bu tür ilanları kaldırabilir; mümkünse başka bir fikir deneyin.</div>
+    <h1>Tişörtün üstüne ne yazsın?</h1>
+    <p class="alt">Bir seçeneğe dokunun, hemen çizmeye başlayayım. Yazılar İngilizce, çünkü alıcıların çoğu Amerika'da.</p>
+    <div class="yigin" id="secenekler"></div>
+    <div class="kendi" id="kendi-alan" hidden>
+      <label for="kendi" hidden>Kendi yazınız</label>
+      <input id="kendi" maxlength="60" placeholder="Tişörtte yazacak söz">
+      <button class="dugme ana" id="kendi-ciz">Çiz</button>
+    </div>
+  </section>
+
+  <!-- 3a. BEKLEME -->
+  <section id="e-bekle" data-adim="3" hidden>
+    <div class="bekle-ust">
+      <div class="tisort" id="bekle-tisort"></div>
+      <div>
+        <h1 id="bekle-baslik">Çiziyorum…</h1>
+        <p class="alt" id="bekle-alt">Size iki farklı tasarım hazırlıyorum; beğendiğinizi seçeceksiniz.</p>
+        <ul class="asamalar" id="asamalar" aria-live="polite"></ul>
+        <div class="cubuk" role="progressbar" aria-label="İlerleme" aria-valuemin="0" aria-valuemax="100" id="cubuk"><i></i></div>
+        <p class="kalan" id="kalan" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="beklerken" id="beklerken">
+      <div class="et">Beklerken bir ipucu</div>
+      <p id="ipucu-metin"></p>
+      <div class="noktalar" id="noktalar"></div>
+    </div>
+    <div id="bekle-gecmis" hidden>
+      <h2>Bu arada önceki tasarımlarınız</h2>
+      <div class="serit" id="serit"></div>
+    </div>
+  </section>
+
+  <!-- 3b. SEÇİM -->
+  <section id="e-sec" data-adim="3" hidden>
+    <h1>Hangisini beğendiniz?</h1>
+    <p class="alt">Beğendiğinizin altındaki düğmeye basın.</p>
+    <div class="not uyari" id="eksik-uyari" hidden>Tasarımlardan biri çizilemedi; elimizde bir tane var.</div>
+    <div class="adaylar" id="adaylar"></div>
+    <div class="iki" style="margin-top:16px">
+      <button class="dugme" id="sec-yeniden">🔁 İkisi de olmadı, yeniden çiz</button>
+      <button class="dugme" id="sec-degistir">✏️ Fikri değiştir</button>
+    </div>
+  </section>
+
+  <!-- 3c. DETAY -->
+  <section id="e-detay" data-adim="3" hidden>
+    <h1>Tasarımınız hazır 🎉</h1>
+    <p class="alt">Farklı tişört renklerinde nasıl durduğuna bakın, sonra bilgisayarınıza kaydedin.</p>
+    <div class="detay">
+      <div class="tisort" id="detay-tisort"></div>
+      <div>
+        <div style="font-weight:700;margin-bottom:8px">Tişört rengi</div>
+        <div class="renkler" id="renkler" role="group" aria-label="Tişört rengi"></div>
+        <div id="kontrast" class="not uyari" style="margin-top:14px" hidden>
+          <div id="kontrast-metin"></div>
+          <button class="dugme" id="koyu-dugme" style="margin-top:10px;min-height:56px">🎨 Koyu tişörte uygun hale getir</button>
+          <div id="koyu-ilerleme" hidden><div class="cubuk" style="margin-top:10px"><i></i></div><p class="kalan" style="font-size:.9rem"></p></div>
+        </div>
+        <div class="yigin" style="margin-top:16px">
+          <a class="dugme ana" id="indir" download><span class="ik" aria-hidden="true">⬇</span> Baskı dosyasını kaydet</a>
+          <a class="dugme" id="indir-koyu" download hidden></a>
+          <button class="dugme" id="metin-dugme"><span class="ik" aria-hidden="true">📝</span> Etsy yazısını hazırla</button>
+          <div class="iki">
+            <button class="dugme" id="begen" aria-pressed="false">🤍 Beğendim</button>
+            <button class="dugme" id="detay-yeniden">🔁 Benzerini çiz</button>
+          </div>
+          <button class="dugme" id="detay-yeni">➕ Yeni bir fikir</button>
+        </div>
+        <p class="ipucu" id="dosya-bilgi"></p>
+      </div>
+    </div>
+    <div id="metin-bolum" hidden>
+      <div class="ara-cizgi"></div>
+      <h2 style="margin-top:0">Etsy ilan yazısı</h2>
+      <div id="metin-ilerleme" hidden><div class="cubuk"><i></i></div><p class="kalan"></p></div>
+      <div id="metin-sonuc"></div>
+    </div>
+  </section>
+
+  <div class="ayak">
+    <span>Tasarımlar yapay zekâ ile çizilen taslaklardır. Yayımlamadan önce kontrol edin. <span id="harcama"></span></span>
+    <span><a href="/uzman">Uzman araçları</a> · <a href="/kullanim">Kullanım özeti</a></span>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const RENKLER = [
+  {ad: "Beyaz", kod: "#ffffff", koyu: false}, {ad: "Gri", kod: "#c8c8c4", koyu: false}, {ad: "Bej", kod: "#e8dcc5", koyu: false},
+  {ad: "Lacivert", kod: "#1f2a44", koyu: true}, {ad: "Siyah", kod: "#141414", koyu: true}];
+const S = {fikir: "", kaynak: "yazi", foto: null, anla: null, slogan: "", kartlar: [], secili: null, renk: "Beyaz", yer: null,
+           sonEylem: null, ipuclari: [], gecmis: [], bekleyen: null};
+
+// ---------- yardımcılar
+function el(etiket, ozellik = {}, ...cocuklar) {
+  const e = document.createElement(etiket);
+  for (const [k, v] of Object.entries(ozellik)) {
+    if (k === "on") for (const [o, f] of Object.entries(v)) e.addEventListener(o, f);
+    else if (k === "class") e.className = v;
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of cocuklar.flat()) if (c != null) e.append(c.nodeType ? c : document.createTextNode(c));
+  return e;
+}
+function olay(ad, veri = {}) {
+  try { navigator.sendBeacon("/api/olay", new Blob([JSON.stringify({ad, ...veri})], {type: "text/plain"})); } catch (_) {}
+}
+const yerel = {
+  al(k, v) { try { const x = localStorage.getItem(k); return x == null ? v : JSON.parse(x); } catch (_) { return v; } },
+  koy(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} },
+};
+async function istek(yol, govde) {
+  const r = await fetch(yol, govde === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(govde)});
+  const j = await r.json().catch(() => ({hata: "sunucudan anlaşılmayan cevap"}));
+  if (!r.ok) throw new Error(j.hata || r.status);
+  return j;
+}
+function dostHata(m) {
+  m = String(m || "");
+  if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return "Atölye programına ulaşılamadı. Bilgisayardaki atölye penceresi kapanmış olabilir.";
+  if (/tavan|sınır/i.test(m)) return "Bu ayki harcama sınırına ulaşıldı.";
+  if (/429/.test(m)) return "Yapay zekâ şu an çok yoğun. Bir dakika sonra tekrar deneyin.";
+  if (/görsel dönmedi|safety|policy/i.test(m)) return "Yapay zekâ bu fikri çizmedi. Fikri biraz değiştirip tekrar deneyin.";
+  return "Lütfen tekrar deneyin. (Ayrıntı: " + m.slice(0, 140) + ")";
+}
+function hataGoster(m, tekrar) {
+  $("hata-metin").textContent = dostHata(m);
+  $("hata").hidden = false;
+  S.sonEylem = tekrar;
+  olay("hata", {m: String(m).slice(0, 150)});
+  $("hata").scrollIntoView({behavior: "smooth", block: "center"});
+}
+const dosya = ad => "/dosya/" + ad;
+function oku(f) { return new Promise((ok, red) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = red; r.readAsDataURL(f); }); }
+async function kucult(f, ust = 1600) {
+  const url = await oku(f);
+  const img = await new Promise((ok, red) => { const i = new Image(); i.onload = () => ok(i); i.onerror = red; i.src = url; });
+  const o = Math.min(1, ust / Math.max(img.width, img.height));
+  const c = el("canvas"); c.width = Math.round(img.width * o); c.height = Math.round(img.height * o);
+  const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height);  // şeffaf PNG JPEG'de siyah olmasın
+  x.drawImage(img, 0, 0, c.width, c.height);
+  return c.toDataURL("image/jpeg", .9);
+}
+
+// ---------- ekranlar
+const EKRANLAR = ["fikir", "yazi", "bekle", "sec", "detay"];
+function git(ad, gecmiseYaz = true) {
+  $("hata").hidden = true;
+  for (const e of EKRANLAR) $("e-" + e).hidden = e !== ad;
+  const adim = +$("e-" + ad).dataset.adim;
+  for (const li of $("adimlar").children) {
+    const a = +li.dataset.a;
+    li.className = a === adim ? "su" : a < adim ? "gecti" : "";
+    if (a === adim) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+  }
+  if (gecmiseYaz && history.state?.ekran !== ad) history.pushState({ekran: ad}, "");
+  window.scrollTo({top: 0, behavior: "smooth"});
+  if (ad === "fikir") baslangic();
+}
+addEventListener("popstate", e => {
+  const ad = e.state?.ekran || "fikir";
+  if (ad === "bekle" && !S.bekleyen) return git(S.kartlar.length ? "sec" : "yazi", false);
+  if ((ad === "detay" && !S.secili) || (ad === "sec" && !S.kartlar.length) || (ad === "yazi" && !S.anla)) return git("fikir", false);
+  git(ad, false);
+});
+
+// ---------- tişört çizimi
+const GOVDE = "M104 18 C120 40 180 40 196 18 L268 50 Q276 54 274 62 L254 124 Q252 130 246 128 L222 120 L224 296 Q224 304 216 304 L84 304 Q76 304 76 296 L78 120 L54 128 Q48 130 46 124 L26 62 Q24 54 32 50 Z";
+function tisort(kutu, renk, gorsel, yerYazi) {
+  const r = RENKLER.find(x => x.ad === renk) || RENKLER[0];
+  kutu.replaceChildren();
+  kutu.style.color = r.koyu ? "#f4f1ea" : "#1f1d1a";
+  kutu.innerHTML = `<svg viewBox="0 0 300 320" aria-hidden="true"><path d="${GOVDE}" fill="${r.kod}" stroke="rgba(0,0,0,.18)" stroke-width="2"/>
+    <path d="M104 18 C120 40 180 40 196 18" fill="none" stroke="rgba(0,0,0,.14)" stroke-width="6"/></svg>`;
+  if (gorsel) kutu.append(el("img", {class: "tas", src: gorsel, alt: "Tasarım " + r.ad.toLowerCase() + " tişört üzerinde"}));
+  else kutu.append(el("div", {class: "yer", lang: "en"}, yerYazi || "✏️"));
+  kutu.setAttribute("role", "img");
+  kutu.setAttribute("aria-label", r.ad + " tişört");
+}
+
+// ---------- 1. fikir
+const fikirAlan = $("fikir");
+function devamGuncelle() {
+  const var_ = fikirAlan.value.trim().length >= 3 || S.foto;
+  $("devam").disabled = !var_;
+  $("devam-ipucu").hidden = !!var_;
+}
+fikirAlan.addEventListener("input", () => { if (S.kaynak !== "ses") S.kaynak = "yazi"; devamGuncelle(); yerel.koy("taslak", fikirAlan.value); });
+fikirAlan.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (!$("devam").disabled) $("devam").click(); } });
+$("devam").onclick = () => { olay("devam", {kaynak: S.foto ? "foto" : S.kaynak}); fikirGonder(fikirAlan.value.trim()); };
+
+$("foto-dugme").onclick = () => S.foto ? fotoKaldir() : $("foto").click();
+$("foto").onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try { S.foto = await kucult(f); } catch (_) { return hataGoster("Fotoğraf açılamadı; başka bir fotoğraf deneyin.", null); }
+  $("foto-img").src = S.foto; $("foto-on").hidden = false; $("foto-yazi").textContent = "Fotoğrafı kaldır";
+  fikirAlan.placeholder = "İsterseniz not yazın: örn. gözlüklü ve mutlu olsun";
+  olay("foto"); devamGuncelle();
+};
+function fotoKaldir() {
+  S.foto = null; $("foto").value = ""; $("foto-on").hidden = true; $("foto-yazi").textContent = "Evcil hayvan fotoğrafı ekle";
+  fikirAlan.placeholder = "Örnek: Gün doğarken yoga yapan tembel hayvan"; devamGuncelle();
+}
+
+const Tanima = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (Tanima) {
+  const m = $("mikrofon"); m.hidden = false;
+  let t = null;
+  m.onclick = () => {
+    if (t) { t.stop(); return; }
+    t = new Tanima(); t.lang = "tr-TR"; t.interimResults = true;
+    const once = fikirAlan.value ? fikirAlan.value.trim() + " " : "";
+    t.onresult = e => { fikirAlan.value = once + [...e.results].map(r => r[0].transcript).join(" "); S.kaynak = "ses"; devamGuncelle(); };
+    t.onend = () => { t = null; m.classList.remove("dinliyor"); m.innerHTML = '<span aria-hidden="true">🎤</span> Sesle söyle'; };
+    t.onerror = () => {};
+    t.start(); m.classList.add("dinliyor"); m.innerHTML = '<span aria-hidden="true">⏹</span> Dinliyorum… bitince dokunun';
+    olay("mikrofon");
+  };
+}
+
+async function baslangic() {
+  try {
+    const j = await istek("/api/baslangic");
+    S.ipuclari = j.ipuclari; S.gecmis = j.gecmis;
+    if (j.renk && !yerel.al("renk", null)) S.renk = j.renk;
+    $("harcama").textContent = `Bugüne kadarki harcama: yaklaşık ${j.harcanan.toFixed(2).replace(".", ",")} $.`;
+    $("oneriler").replaceChildren(...j.oneriler.map(o => el("button", {class: "oneri", on: {click: () => {
+      olay("oneri", {baslik: o.baslik}); olay("devam", {kaynak: "oneri"});
+      fikirAlan.value = o.fikir; S.kaynak = "oneri"; devamGuncelle(); fikirGonder(o.fikir);
+    }}},
+      el("span", {class: "em", "aria-hidden": "true"}, o.emoji), el("span", {class: "bas"}, o.baslik),
+      o.gun_kaldi != null ? el("span", {class: "rozet" + (o.durum === "acele" ? " acele" : "")},
+        o.durum === "acele" ? `${o.gun_kaldi} gün kaldı, acele` : `${o.gun_kaldi} gün kaldı`) : null)));
+    $("gecmis-bolum").hidden = !j.gecmis.length;
+    $("gecmis").replaceChildren(...j.gecmis.slice(0, 8).map(g => el("button", {"aria-label": "Tasarımı aç: " + (g.fikir || g.konu_en), on: {click: () => gecmistenAc(g)}},
+      el("img", {src: dosya(g.onizleme), alt: "", loading: "lazy"}), g.begeni ? el("span", {class: "kalp", "aria-hidden": "true"}, "❤️") : null)));
+  } catch (e) { /* öneriler gelmezse sayfa yine çalışır */ }
+}
+function gecmistenAc(g) {
+  S.anla = {fikir: g.fikir, konu_en: g.konu_en, anlasilan_tr: g.fikir, sloganlar: []};
+  S.slogan = g.slogan; S.kartlar = [{ad: g.ad, onizleme: g.onizleme, baski: g.baski, orijinal: g.orijinal}];
+  olay("gecmis_ac");
+  sec(S.kartlar[0], g.begeni);
+}
+
+// ---------- iş takibi
+async function isBekle(baslangicIstegi, guncelle) {
+  let d = await baslangicIstegi;
+  while (!d.bitti) {
+    guncelle(d);
+    await new Promise(r => setTimeout(r, 1000));
+    d = await istek("/api/is/" + d.id);
+  }
+  guncelle(d);
+  if (d.hata) throw new Error(d.hata);
+  return d.sonuc;
+}
+function ilerleme(d, cubuk, yazi) {
+  const oran = d.bitti ? 1 : Math.min(.95, d.gecen_sn / Math.max(5, d.tahmini_sn));
+  cubuk.querySelector("i").style.width = (oran * 100) + "%";
+  cubuk.setAttribute("aria-valuenow", Math.round(oran * 100));
+  const kalan = Math.round(d.tahmini_sn - d.gecen_sn);
+  yazi.textContent = d.bitti ? "Bitti ✓" : kalan > 5 ? `Yaklaşık ${kalan} saniye kaldı` : kalan > -15 ? "Neredeyse bitti…"
+    : "Beklenenden uzun sürüyor ama hâlâ çalışıyor. Pencereyi kapatmayın.";
+}
+
+// ---------- 2. yazı
+async function fikirGonder(fikir) {
+  S.fikir = fikir || (S.foto ? "evcil hayvan portresi" : "");
+  if (!S.fikir) return;
+  S.anla = null; S.kartlar = []; S.secili = null;
+  $("anlasilan").textContent = S.fikir;
+  $("marka-uyari").hidden = true; $("kendi-alan").hidden = true;
+  $("secenekler").replaceChildren(el("p", {class: "alt", "aria-live": "polite"}, "Fikrinizi okuyup yazı önerileri hazırlıyorum…"),
+    el("div", {class: "iskelet"}), el("div", {class: "iskelet"}), el("div", {class: "iskelet"}));
+  git("yazi");
+  const deneme = () => fikirGonder(fikir);
+  try {
+    const fikirMetni = S.foto ? `Evcil hayvan fotoğrafından tişört portresi. ${fikir}` : S.fikir;
+    S.anla = await isBekle(istek("/api/k/anla", S.foto ? {fikir: fikirMetni, foto: S.foto} : {fikir: fikirMetni}), () => {});
+    $("anlasilan").textContent = S.anla.anlasilan_tr;
+    $("marka-uyari").hidden = !S.anla.marka;
+    secenekleriGoster();
+  } catch (e) { hataGoster(e.message, deneme); }
+}
+function secenekleriGoster() {
+  const kart = (yazi, anlam, tur, slogan) => el("button", {class: "secenek", on: {click: () => cizBasla(slogan, tur)}},
+    el("span", {}, el("span", {class: "yazi", lang: slogan ? "en" : "tr"}, yazi), el("span", {class: "anlam"}, anlam)), el("span", {class: "ok", "aria-hidden": "true"}, "→"));
+  $("secenekler").replaceChildren(
+    ...S.anla.sloganlar.map(s => kart(s.slogan, s.anlam_tr ? "Anlamı: " + s.anlam_tr : "", "oneri", s.slogan)),
+    kart("Yazı olmasın", "Sadece resim", "yok", ""),
+    el("button", {class: "secenek", on: {click: () => { $("kendi-alan").hidden = false; $("kendi").focus(); }}},
+      el("span", {}, el("span", {class: "yazi"}, "✍️ Kendim yazayım"), el("span", {class: "anlam"}, "Tişörtte istediğiniz söz yazsın")),
+      el("span", {class: "ok", "aria-hidden": "true"}, "→")));
+}
+$("kendi-ciz").onclick = () => { const v = $("kendi").value.trim(); if (v) cizBasla(v, "kendi"); else $("kendi").focus(); };
+$("kendi").addEventListener("keydown", e => { if (e.key === "Enter") $("kendi-ciz").click(); });
+$("degistir").onclick = () => { olay("degistir"); git("fikir"); fikirAlan.focus(); };
+
+// ---------- 3. çizim ve bekleme
+let ipucuSayac = null;
+function ipucuDongusu() {
+  clearInterval(ipucuSayac);
+  const liste = S.ipuclari.length ? S.ipuclari : ["Tasarımlar birkaç saniye içinde hazır olacak."];
+  let i = Math.floor(Math.random() * liste.length);
+  const goster = n => {
+    i = (n + liste.length) % liste.length;
+    $("ipucu-metin").textContent = liste[i];
+    [...$("noktalar").children].forEach((b, k) => b.classList.toggle("su", k === i));
+  };
+  $("noktalar").replaceChildren(...liste.map((_, k) => el("button", {"aria-label": `İpucu ${k + 1}`, on: {click: () => { goster(k); clearInterval(ipucuSayac); }}})));
+  goster(i);
+  ipucuSayac = setInterval(() => goster(i + 1), 9000);
+}
+function asamaCiz(d) {
+  $("asamalar").replaceChildren(...d.adimlar.map((a, k) => el("li", {class: k < d.adim ? "tamam" : k === d.adim ? "su" : ""},
+    el("span", {class: "im", "aria-hidden": "true"}, k < d.adim ? "✓" : ""), a)));
+}
+document.addEventListener("visibilitychange", () => { if (document.hidden && S.bekleyen) olay("bekleme_gizlendi"); });
+
+async function cizBasla(slogan, tur) {
+  S.slogan = slogan; S.kartlar = []; S.secili = null;
+  olay("ciz_basla", {yazi: tur || "yok"});
+  git("bekle");
+  $("bekle-baslik").textContent = "Çiziyorum…";
+  $("bekle-alt").textContent = "Size iki farklı tasarım hazırlıyorum; beğendiğinizi seçeceksiniz.";
+  tisort($("bekle-tisort"), S.renk, null, slogan || (S.foto ? "🐾" : "✏️"));
+  ipucuDongusu();
+  $("bekle-gecmis").hidden = !S.gecmis.length;
+  $("serit").replaceChildren(...S.gecmis.slice(0, 10).map(g => el("div", {class: "k"}, (() => { const k = el("div", {class: "tisort"}); tisort(k, "Beyaz", dosya(g.onizleme)); return k; })())));
+  const t0 = Date.now(); let ilkGosterildi = false;
+  const govde = {konu_en: S.anla.konu_en, slogan, fikir: S.fikir};
+  if (S.foto) govde.foto = S.foto;
+  S.bekleyen = true;
+  try {
+    const s = await isBekle(istek("/api/k/ciz", govde), d => {
+      asamaCiz(d); ilerleme(d, $("cubuk"), $("kalan"));
+      if (d.ara.length && !ilkGosterildi) {
+        ilkGosterildi = true;
+        tisort($("bekle-tisort"), S.renk, dosya(d.ara[0].onizleme));
+        $("bekle-baslik").textContent = "İlki hazır! 🎉";
+        $("bekle-alt").textContent = "İkincisi de birazdan gelir.";
+      }
+    });
+    S.kartlar = s.kartlar;
+    yerel.koy("taslak", "");
+    olay("ciz_bitti", {sn: Math.round((Date.now() - t0) / 1000)});
+    adaylariGoster(s.eksik);
+  } catch (e) { hataGoster(e.message, () => cizBasla(slogan, tur)); }
+  finally { S.bekleyen = null; clearInterval(ipucuSayac); }
+}
+function adaylariGoster(eksik) {
+  $("eksik-uyari").hidden = !eksik;
+  if (S.kartlar.length === 1) return sec(S.kartlar[0]);
+  $("adaylar").replaceChildren(...S.kartlar.map((k, i) => {
+    const t = el("div", {class: "tisort"}); tisort(t, S.renk, dosya(k.onizleme));
+    return el("div", {class: "aday"}, t, el("button", {class: "dugme ana", on: {click: () => { olay("sec", {sira: i}); sec(k); }}}, i === 0 ? "Birinciyi seçiyorum" : "İkinciyi seçiyorum"));
+  }));
+  git("sec");
+}
+$("sec-yeniden").onclick = () => { olay("yeniden", {yer: "sec"}); cizBasla(S.slogan, "tekrar"); };
+$("sec-degistir").onclick = () => { olay("degistir"); git("fikir"); };
+
+// ---------- detay
+function sec(kart, begeni = false) {
+  S.secili = {kart, koyu: null, begeni};
+  $("metin-bolum").hidden = true; $("metin-sonuc").replaceChildren();
+  $("begen").setAttribute("aria-pressed", begeni); $("begen").textContent = begeni ? "❤️ Beğenildi" : "🤍 Beğendim";
+  $("renkler").replaceChildren(...RENKLER.map(r => el("button", {class: "renk", "aria-pressed": r.ad === S.renk, on: {click: () => renkSec(r.ad)}},
+    el("span", {style: `background:${r.kod}`}), r.ad)));
+  detayCiz();
+  git("detay");
+}
+function renkSec(ad) {
+  S.renk = ad; yerel.koy("renk", ad); olay("renk", {renk: ad});
+  [...$("renkler").children].forEach(b => b.setAttribute("aria-pressed", b.textContent === ad));
+  detayCiz();
+}
+function detayCiz() {
+  const {kart, koyu} = S.secili;
+  const r = RENKLER.find(x => x.ad === S.renk);
+  const gorsel = r.koyu && koyu ? koyu : kart;
+  tisort($("detay-tisort"), S.renk, dosya(gorsel.onizleme));
+  const ad = (S.slogan || S.fikir || "tasarim").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "tasarim";
+  // Büyük düğme her zaman ekrandaki tişörtün dosyasını kaydeder; diğer sürüm varsa ikinci düğmede durur.
+  const diger = koyu ? (gorsel === koyu ? kart : koyu) : null;
+  const ik = '<span class="ik" aria-hidden="true">⬇</span> ';
+  $("indir").href = dosya(gorsel.baski); $("indir").download = `tisort-${ad}${gorsel === koyu ? "-koyu" : ""}.png`;
+  $("indir").innerHTML = ik + (koyu ? (gorsel === koyu ? "Koyu tişört dosyasını kaydet" : "Açık tişört dosyasını kaydet") : "Baskı dosyasını kaydet");
+  $("indir-koyu").hidden = !diger;
+  if (diger) {
+    $("indir-koyu").href = dosya(diger.baski); $("indir-koyu").download = `tisort-${ad}${diger === koyu ? "-koyu" : ""}.png`;
+    $("indir-koyu").innerHTML = ik + (diger === koyu ? "Koyu tişört için olanı da kaydet" : "Açık tişört için olanı da kaydet");
+  }
+  $("dosya-bilgi").textContent = gorsel.boyut ? `Baskı dosyası: arka planı şeffaf PNG, ${gorsel.boyut.replace("x", " × ")} piksel.` : "Baskı dosyası: arka planı şeffaf PNG.";
+  $("kontrast").hidden = true;
+  if (r.koyu && !koyu) kontrastBak(dosya(kart.onizleme), r);
+}
+function kontrastBak(src, r) {
+  const img = new Image();
+  img.onload = () => {
+    const c = el("canvas"); const o = 160 / Math.max(img.width, img.height);
+    c.width = Math.max(1, img.width * o); c.height = Math.max(1, img.height * o);
+    const x = c.getContext("2d"); x.drawImage(img, 0, 0, c.width, c.height);
+    const v = x.getImageData(0, 0, c.width, c.height).data;
+    const hex = parseInt(r.kod.slice(1), 16), ton = (((hex >> 16) & 255) * .299 + ((hex >> 8) & 255) * .587 + (hex & 255) * .114);
+    let dolu = 0, yakin = 0;
+    for (let i = 0; i < v.length; i += 4) if (v[i + 3] > 200) { dolu++; if (Math.abs(v[i] * .299 + v[i + 1] * .587 + v[i + 2] * .114 - ton) < 50) yakin++; }
+    const oran = dolu ? yakin / dolu : 0;
+    if (oran > .2 && S.renk === r.ad && !S.secili.koyu) {
+      $("kontrast-metin").textContent = `⚠️ ${r.ad} tişörtte tasarımın bir kısmı zor görünür (yaklaşık %${Math.round(oran * 100)}). Koyu çizgiler ve yazılar kaybolabilir.`;
+      $("kontrast").hidden = false; $("koyu-dugme").hidden = false; $("koyu-ilerleme").hidden = true;
+    }
+  };
+  img.src = src;
+}
+$("koyu-dugme").onclick = async () => {
+  const s = S.secili; olay("koyu");
+  $("koyu-dugme").hidden = true; $("koyu-ilerleme").hidden = false;
+  const ci = $("koyu-ilerleme");
+  try {
+    s.koyu = await isBekle(istek("/api/k/koyu", {orijinal: s.kart.orijinal}), d => ilerleme(d, ci.querySelector(".cubuk"), ci.querySelector(".kalan")));
+    if (S.secili === s) detayCiz();
+  } catch (e) { $("koyu-dugme").hidden = false; $("koyu-ilerleme").hidden = true; hataGoster(e.message, () => $("koyu-dugme").click()); }
+};
+$("indir").addEventListener("click", () => olay("indir", {tur: "ana"}));
+$("indir-koyu").addEventListener("click", () => olay("indir", {tur: "diger"}));
+$("begen").onclick = () => {
+  const b = !S.secili.begeni; S.secili.begeni = b;
+  olay("begen", {tasarim: S.secili.kart.ad, deger: b});
+  $("begen").setAttribute("aria-pressed", b); $("begen").textContent = b ? "❤️ Beğenildi" : "🤍 Beğendim";
+};
+$("detay-yeniden").onclick = () => { olay("yeniden", {yer: "detay"}); cizBasla(S.slogan, "tekrar"); };
+$("detay-yeni").onclick = () => { fikirAlan.value = ""; fotoKaldir(); git("fikir"); fikirAlan.focus(); };
+
+function kopyaAlan(baslik, deger, govde) {
+  const d = el("button", {on: {click: async () => {
+    try { await navigator.clipboard.writeText(deger); } catch (_) {
+      const t = el("textarea", {}, deger); document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    d.textContent = "Kopyalandı ✓"; d.classList.add("oldu"); olay("kopyala", {alan: baslik});
+    setTimeout(() => { d.textContent = "📋 Kopyala"; d.classList.remove("oldu"); }, 2500);
+  }}}, "📋 Kopyala");
+  return el("div", {class: "alan"}, el("div", {class: "bas"}, el("b", {}, baslik), d), govde);
+}
+$("metin-dugme").onclick = async () => {
+  olay("metin");
+  $("metin-bolum").hidden = false; $("metin-ilerleme").hidden = false; $("metin-sonuc").replaceChildren();
+  $("metin-bolum").scrollIntoView({behavior: "smooth"});
+  const mi = $("metin-ilerleme");
+  try {
+    const l = await isBekle(istek("/api/k/metin", {konu_en: S.anla?.konu_en || S.fikir, slogan: S.slogan}),
+      d => ilerleme(d, mi.querySelector(".cubuk"), mi.querySelector(".kalan")));
+    mi.hidden = true;
+    const parca = [];
+    if (l.eksik_bilgi) parca.push(el("div", {class: "not uyari"}, "Açıklamada {{FACT_NEEDED}} yazan yerlere kumaş, beden, baskı yöntemi gibi bilgileri siz yazın. Bunları bir kez ", el("code", {}, "urun.json"), " dosyasına girerseniz her seferinde kendiliğinden eklenir."));
+    if (l.sorunlar?.length) parca.push(el("div", {class: "not uyari"}, "Kontrol edin: " + l.sorunlar.join("; ")));
+    parca.push(kopyaAlan("Başlık", l.baslik, el("pre", {}, l.baslik)));
+    parca.push(kopyaAlan(`Etiketler (${l.etiketler.length})`, l.etiketler.join(", "), el("div", {class: "etiketler"}, l.etiketler.map(e => el("span", {}, e)))));
+    parca.push(kopyaAlan("Açıklama", l.aciklama, el("pre", {}, l.aciklama)));
+    parca.push(el("p", {class: "ipucu"}, "Etsy'de ilan oluştururken \"yapay zekâ kullanıldı\" seçeneğini de işaretleyin."));
+    $("metin-sonuc").replaceChildren(...parca);
+  } catch (e) { mi.hidden = true; hataGoster(e.message, () => $("metin-dugme").click()); }
+};
+
+// ---------- genel
+$("hata-tekrar").onclick = () => { $("hata").hidden = true; if (S.sonEylem) S.sonEylem(); };
+$("hata-ev").onclick = () => { $("hata").hidden = true; git("fikir"); };
+$("eve").onclick = () => git("fikir");
+function buyukYazi(acik) {
+  document.documentElement.classList.toggle("buyuk", acik);
+  $("buyut").setAttribute("aria-pressed", acik); $("buyut").textContent = acik ? "A− Normal yazı" : "A+ Büyük yazı";
+}
+$("buyut").onclick = () => { const a = !document.documentElement.classList.contains("buyuk"); buyukYazi(a); yerel.koy("buyuk", a); olay("buyuk_yazi", {acik: a}); };
+buyukYazi(yerel.al("buyuk", false));
+S.renk = yerel.al("renk", "Beyaz");
+fikirAlan.value = yerel.al("taslak", "");
+devamGuncelle();
+history.replaceState({ekran: "fikir"}, "");
+git("fikir", false);
+olay("acildi");
+</script>
+</body>
+</html>

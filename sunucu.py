@@ -1,7 +1,9 @@
 """Tasarım atölyesi arayüzü: python sunucu.py  ->  http://127.0.0.1:8792
 
+Ana sayfa basit arayüz (kolay.html); bütün araçlar /uzman sayfasında (atolye.html).
 Yalnızca bu bilgisayardan erişilir (127.0.0.1). Üretilen dosyalar cikti/atolye/ altına yazılır.
 """
+import html
 import base64
 import json
 import threading
@@ -12,6 +14,8 @@ from pathlib import Path
 
 import atolye
 import bulten
+import kolay
+import metin
 import satis
 import tasarim
 from api import harcanan
@@ -41,7 +45,8 @@ def _tarz():
     if not TARZ.exists():
         return None, []
     ornekler = [p.read_bytes() for p in sorted(TARZ_ORNEK.glob("*"))][:2]
-    return json.loads(TARZ.read_text(encoding="utf-8")), ornekler
+    tarz = json.loads(TARZ.read_text(encoding="utf-8"))
+    return (tarz, ornekler) if tarz.get("stil_istemi") else (None, [])
 
 
 def _kart(sonuc, ad, tur):
@@ -59,6 +64,8 @@ def islem(yol, g):
         if not gorseller:
             raise ValueError("en az bir örnek tasarım gerekli")
         tarz = atolye.tarz_cikar(gorseller)
+        if not tarz.get("stil_istemi"):
+            raise ValueError(tarz.get("hata") or "bu görsellerden tarz çıkarılamadı; tişört tasarımı yükleyin")
         TARZ_ORNEK.mkdir(parents=True, exist_ok=True)
         for p in TARZ_ORNEK.glob("*"):
             p.unlink()
@@ -66,6 +73,35 @@ def islem(yol, g):
             (TARZ_ORNEK / f"ornek_{i}.img").write_bytes(b)
         TARZ.write_text(json.dumps(tarz, ensure_ascii=False, indent=1), encoding="utf-8")
         return {"tarz": tarz}
+    if yol == "/api/olay":
+        kolay.olay_yaz(g)
+        return {}
+    if yol == "/api/k/anla":
+        fikir = g.get("fikir", "").strip()
+        if not fikir:
+            raise ValueError("fikir boş")
+        foto = _gorsel(g["foto"]) if g.get("foto") else None
+        return kolay.is_baslat("anla", ["Fikrinizi okuyorum", "Yazı önerileri hazırlanıyor"], lambda is_: kolay.anla(fikir, foto))
+    if yol == "/api/k/ciz":
+        tarz, ornekler = _tarz()
+        foto = _gorsel(g["foto"]) if g.get("foto") else None
+        return kolay.is_baslat("ciz", ["Hazırlanıyor", "Yapay zekâ çiziyor", "Arka plan temizleniyor"],
+                               lambda is_: kolay.ciz(is_, CIKTI, g["konu_en"], g.get("slogan", ""), g.get("fikir", ""),
+                                                    foto, tarz, ornekler))
+    if yol == "/api/k/koyu":
+        kaynak = (CIKTI / Path(g["orijinal"]).name).read_bytes()
+
+        def koyu(is_):
+            ad = _ad("koyu")
+            is_["adim"] = 1
+            s = atolye.koyu_versiyon(kaynak, CIKTI / ad)
+            return s | {"ad": ad, "orijinal": f"{ad}.orijinal.webp"}
+        return kolay.is_baslat("koyu", ["Hazırlanıyor", "Koyu tişört için yeniden boyanıyor"], koyu)
+    if yol == "/api/k/metin":
+        fikir = {"baslik": g["konu_en"], "slogan": g.get("slogan", ""), "prompt": g["konu_en"],
+                 "neden_simdi": "", "hedef_alici": ""}
+        return kolay.is_baslat("metin", ["Başlık ve etiketler yazılıyor", "Kurallara göre denetleniyor"],
+                               lambda is_: metin.yaz(fikir))
     if yol == "/api/slogan":
         return {"adaylar": atolye.sloganlar(g["konu"])}
     if yol == "/api/tasarim":
@@ -129,6 +165,26 @@ def islem(yol, g):
     raise KeyError(yol)
 
 
+def kullanim_sayfasi():
+    o = kolay.kullanim_ozeti()
+    e = html.escape
+    tablo = lambda satirlar: "".join(f"<tr><td>{e(str(a))}</td><td>{e(str(b))}</td></tr>" for a, b in satirlar)         or "<tr><td colspan=2>henüz yok</td></tr>"
+    return f"""<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kullanım özeti</title><style>body{{font:17px/1.5 system-ui,sans-serif;max-width:680px;margin:24px auto;padding:0 16px;
+background:#fbf8f2;color:#1f1d1a}}td{{padding:6px 10px;border-bottom:1px solid #e4dfd4}}td:last-child{{text-align:right}}
+table{{border-collapse:collapse;width:100%;margin-bottom:24px}}h2{{font-size:18px;margin-top:28px}}p{{color:#5d5950}}</style>
+<h1>Kullanım özeti</h1>
+<p>Yalnızca bu bilgisayarda tutulur, hiçbir yere gönderilmez. {o['olay_sayisi']} kayıt, ilk kayıt {o['ilk'] or '—'}.
+Az kullanıcıyla bu sayılar kesin sonuç değildir; hangi adımda takılındığını görmek içindir.</p>
+<h2>Adım adım</h2><table>{tablo(o['huni'])}</table>
+<h2>Fikir nereden geldi</h2><table>{tablo(o['fikir_kaynagi'].items())}</table>
+<h2>Yazı seçimi</h2><table>{tablo([('Öneri seçti', o['yazi_secimi']['oneri']), ('Kendisi yazdı', o['yazi_secimi']['kendi']), ('Yazısız', o['yazi_secimi']['yok'])])}</table>
+<h2>Bekleme</h2><table>{tablo([('Çizim süresi (ortanca, sn)', o['ciz_ortanca_sn'] or '—'), ('Beklerken sayfadan ayrıldı', o['beklerken_ayrildi']), ('Hata', o['hata'])])}</table>
+<h2>En çok dokunulan öneriler</h2><table>{tablo(o['oneriler'])}</table>
+<h2>Seçilen tişört renkleri</h2><table>{tablo(o['renkler'])}</table>
+<p><a href="/">← Atölyeye dön</a></p></html>"""
+
+
 class Isleyici(BaseHTTPRequestHandler):
     def _gonder(self, kod, govde, tur="application/json; charset=utf-8"):
         veri = govde if isinstance(govde, bytes) else json.dumps(govde, ensure_ascii=False).encode()
@@ -148,7 +204,21 @@ class Isleyici(BaseHTTPRequestHandler):
     def do_GET(self):
         yol = self.path.split("?")[0]
         if yol in ("/", "/index.html"):
+            return self._gonder(200, (KOK / "kolay.html").read_bytes(), "text/html; charset=utf-8")
+        if yol == "/uzman":
             return self._gonder(200, (KOK / "atolye.html").read_bytes(), "text/html; charset=utf-8")
+        if yol == "/kullanim":
+            return self._gonder(200, kullanim_sayfasi().encode(), "text/html; charset=utf-8")
+        if yol.startswith("/api/is/"):
+            try:
+                return self._gonder(200, kolay.durum(yol[len("/api/is/"):]))
+            except KeyError:
+                return self._gonder(404, {"hata": "iş bulunamadı (sunucu yeniden başlamış olabilir)"})
+        if yol == "/api/baslangic":
+            tarz, _ = _tarz()
+            return self._gonder(200, {"oneriler": kolay.oneriler(), "gecmis": kolay.gecmis(),
+                                      "renk": kolay.tercih_rengi(), "ipuclari": kolay.IPUCLARI,
+                                      "tarz": bool(tarz), "harcanan": round(harcanan(), 2)})
         if yol.startswith("/dosya/"):
             return self._dosya(CIKTI, yol[len("/dosya/"):])
         if yol.startswith("/bulten/"):
@@ -166,6 +236,8 @@ class Isleyici(BaseHTTPRequestHandler):
             self._gonder(200, islem(self.path, g))
         except KeyError as h:
             self._gonder(400, {"hata": f"eksik alan ya da bilinmeyen işlem: {h}"})
+        except ValueError as h:
+            self._gonder(400, {"hata": str(h)})
         except SystemExit as h:
             self._gonder(503, {"hata": str(h)})
         except Exception as h:

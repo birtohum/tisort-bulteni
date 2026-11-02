@@ -53,6 +53,48 @@ Boş bırakılan alan açıklamada `{{FACT_NEEDED}}` olarak kalır; uydurulmaz.
 .venv/Scripts/python sunucu.py     # http://127.0.0.1:8792 (yalnızca bu bilgisayardan)
 ```
 
+### Basit sayfa (ana sayfa, `kolay.html` + `kolay.py`)
+
+Bilgisayarla arası iyi olmayan biri de ilk bakışta kullanabilsin diye her ekranda tek bir soru ve tek bir büyük düğme var:
+
+1. **Ne çizelim?** Fikir Türkçe yazılır, sesle söylenir (tarayıcı destekliyorsa) ya da bir öneri kartına dokunulur.
+   Öneriler yaklaşan özel günlerden gelir ("Noel · 53 gün kaldı") ve her zaman satan konulardan oluşur. Evcil hayvan
+   fotoğrafı da eklenebilir.
+2. **Tişörtün üstüne ne yazsın?** Model fikri İngilizce bir çizim tarifine çevirir ve 3 slogan önerir; her önerinin
+   yanında Türkçe anlamı ve "şunu çizeceğim" cümlesi görünür. Fikirde marka, karakter ya da ünlü varsa uyarı çıkar.
+   Bir seçeneğe dokununca çizim başlar.
+3. **Bekleme:** Aynı anda iki tasarım çizilir. Bu sırada şunlar görünür:
+   - gerçek aşamalar (hazırlanıyor → çiziyor → arka plan temizleniyor);
+   - kalan süre (son 10 çizimin ortanca süresi);
+   - tişört üstünde sloganın taslağı;
+   - dönen Etsy ipuçları ve önceki tasarımlar.
+
+   İlk tasarım biter bitmez gösterilir.
+4. **Hangisini beğendiniz?** → **Tasarımınız hazır:**
+   - 5 tişört renginde önizleme;
+   - koyu renkte kaybolan çizgiler için uyarı ve tek düğmeyle koyu sürüm;
+   - baskı dosyasını kaydetme;
+   - kopyala düğmeli Etsy başlığı, 13 etiket ve açıklama;
+   - beğenme ve benzerini çizme.
+
+Ek olarak: "A+ Büyük yazı" düğmesi, tarayıcının geri düğmesiyle adım geri gitme ve yarım kalan fikrin saklanması var.
+Hata mesajları sade Türkçe ve "Tekrar dene" düğmeli. Eski sekmeli sayfa `/uzman` adresinde duruyor (tarz, aile seti,
+seri, satış raporu, bülten).
+
+**Veriye göre değişen kısım ve sınırı:** Sayfa hangi adıma gelindiğini, hangi önerilere dokunulduğunu, rengi, indirmeyi
+ve beklerken sayfadan ayrılmayı `kayitlar/kullanim.jsonl` dosyasına yazar. Kayıt yalnızca bu bilgisayarda kalır ve
+`/kullanim` sayfasında özetlenir. Tek bir kullanıcıyla A/B testi anlamlı sonuç vermez, bu yüzden düğmeler kendi kendine
+değişmez. Değişen yalnızca kişisel tercihlerdir: en çok seçilen tişört rengi varsayılan olur, en çok dokunulan öneriler
+öne çıkar. Tasarım kararları (tek ana düğme, büyük dokunma alanları, yüksek kontrast, ikon + yazı) bilinen kullanılabilirlik
+ilkelerine dayanıyor; kullanıcıyla test edilmedi.
+
+2 Kasım denemesi:
+- "sabah kahvesini içmeden konuşmayan huysuz bir baykuş" fikri yazıldı. Üç slogan önerildi; "No Coffee, No Hoot"
+  seçildi ve iki tasarım yaklaşık 45 saniyede çıktı.
+- Siyah tişörtte yazının kaybolduğu uyarısı çıktı (%32); koyu sürüm sorunu giderdi.
+- Etsy yazısı 13 etiketle geldi. Ürün bilgileri boş olduğu için açıklamada `{{FACT_NEEDED}}` kaldı.
+- Golden köpek resmiyle fotoğraf adımı: "Açık krem tüylü bir golden köpek…" doğru anlaşıldı.
+
 | Sekme | Ne yapar | 2 Kasım denemesi |
 |---|---|---|
 | Yeni tasarım | konu + slogan → tasarım; "Slogan öner" 10 aday yazıp kendini puanlar, en iyi 3'ü gösterir | çalıştı; sloganlar orta (model kendine en fazla 7/10 veriyor) |
