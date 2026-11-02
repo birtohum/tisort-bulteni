@@ -43,8 +43,8 @@ Boş bırakılan alan açıklamada `{{FACT_NEEDED}}` olarak kalır; uydurulmaz.
   satıcı bloglarından derlendi; Etsy'nin güncel politikası ayrıca okunmalı.
 - **Fikri mülkiyet taraması** bariz riskleri (marka listesi + model) yakalar; hukuki tarama değildir.
 - Model aynı anda hem fikir üretip hem risk denetliyor; bağımsız değil.
-- Wikipedia ilgisi Etsy satışının doğrudan ölçüsü değildir. Tasarımcının kendi satış verisi (Etsy API, kendi izniyle)
-  eklenince öneriler ona göre ağırlıklandırılmalı.
+- Wikipedia ilgisi Etsy satışının doğrudan ölçüsü değildir. Tasarımcının kendi satış CSV'si atölyeden yüklenince
+  (veri/satis_rapor.json) fikirler ona göre ağırlıklanır.
 - Tarz şimdilik varsayılan ("retro, kalın çizgi, esprili"); tasarımcının mağazası incelenince güncellenecek.
 
 ## Atölye (elle kullanılan arayüz)
