@@ -47,6 +47,15 @@ Boş bırakılan alan açıklamada `{{FACT_NEEDED}}` olarak kalır; uydurulmaz.
   (veri/satis_rapor.json) fikirler ona göre ağırlıklanır.
 - Tarz şimdilik varsayılan ("retro, kalın çizgi, esprili"); tasarımcının mağazası incelenince güncellenecek.
 
+## Herkese açık demo
+
+**Dene:** https://51-20-66-93.sslip.io/tisort/
+
+`canli.py` basit akışı (fikir → yazı → iki tasarım → renk önizleme → Etsy metni) AWS'de, Caddy arkasında açar (`tisort-demo.service`).
+Demoda yalnız bu akışın uçları açık; uzman araçları, kullanım özeti, satış dosyası, aile/seri ve fotoğraf yükleme kapalı,
+başkalarının tasarımları gösterilmez. Kişi başı günde 3 çizim (her biri 2 tasarım), toplam günde 40 çizim, harcama tavanı 5 $;
+çizimler 24 saat sonra silinir. Bir tam akış yaklaşık 0,04 $.
+
 ## Atölye (elle kullanılan arayüz)
 
 ```bash
